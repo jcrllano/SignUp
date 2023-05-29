@@ -38,7 +38,7 @@ public class AppController {
           
     }
 
-
+    //this will invoke the sigup page
     @GetMapping("/signup")
     public String signup(Model model) {
         return "signup";
