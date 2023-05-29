@@ -25,6 +25,8 @@ public class AppController {
         String password = "XDR%6yhn";
         String UserInputemail =  greeting.getEmail();
         String UserInputpassword = greeting.getPassword();
+
+        //this estatement will check the login input
         if (UserInputemail.equals(email)) {
             if (UserInputpassword.equals(password)) {
                 model.addAttribute("greeting", greeting);  
