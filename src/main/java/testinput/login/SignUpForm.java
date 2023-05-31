@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity 
-@Table(name="sign_up_form")
+@Table(name="sign_up_members")
 @Getter
 @Setter
 public class SignUpForm {
