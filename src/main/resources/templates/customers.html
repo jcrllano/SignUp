@@ -11,24 +11,42 @@
           crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Registration and Login System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-                </li>
-            </ul>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/home}" style = "color: white">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#" style = "color: white">How to..</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Products and Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Calculators and tools</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Help</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style = "color: white" th:href="@{/logout}">Logout</a>
+              </li>
+            </ul> 
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="How can we help?" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
         </div>
-    </div>
-</nav>
+      </nav>
+<br />
+<br />
+<br />
 <div class="container">
     <div class="row">
         <h1> Registered Users </h1>

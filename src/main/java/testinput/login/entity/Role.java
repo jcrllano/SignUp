@@ -1,5 +1,4 @@
-package testinput.login;
-
+package testinput.login.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="roles")
-
 public class Role {
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -24,5 +22,5 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy="roles")
-    private List<Customers> customers;
+    private List<User> users;
 }

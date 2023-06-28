@@ -1,5 +1,4 @@
-package testinput.login;
-
+package testinput.login.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,20 +6,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import testinput.login.entity.User;
+import testinput.login.entity.Role;
+import testinput.login.repository.UserRepository;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private CustomerRepository userRepository;
 
-    public CustomUserDetailsService(CustomerRepository userRepository) {
+    private UserRepository userRepository;
+
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Customers user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
 
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),

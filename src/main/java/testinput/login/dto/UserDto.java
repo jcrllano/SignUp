@@ -1,4 +1,4 @@
-package testinput.login;
+package testinput.login.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -11,22 +11,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSetterGetter {
+public class UserDto {
     private Long id;
     @NotEmpty
     private String firstName;
     @NotEmpty
     private String lastName;
-    @NotEmpty
-    private String ssn;
-    @NotEmpty
-    private String address;
-    @NotEmpty
-    private String city;
-    @NotEmpty
-    private String state;
-    @NotEmpty
-    private String zipcode;
     @NotEmpty(message = "Email should not be empty")
     @Email
     private String email;
