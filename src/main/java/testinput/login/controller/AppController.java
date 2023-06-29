@@ -58,7 +58,7 @@ public class AppController {
         return "redirect:/register?success";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/customers")
     public String listRegisteredUsers(Model model){
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
