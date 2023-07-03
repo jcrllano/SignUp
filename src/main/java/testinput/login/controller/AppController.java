@@ -9,9 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
 import testinput.login.dto.UserDto;
+import testinput.login.entity.ConfirmationTime;
 import testinput.login.entity.User;
 import testinput.login.service.TimeService;
 import testinput.login.service.UserService;
@@ -36,6 +39,12 @@ public class AppController {
     @GetMapping("/login")
     public String loginForm() {
         return "login";
+    }
+
+    @GetMapping("/confirmation")
+    public String confirmation(Model model) {
+        
+        return "confirmation";
     }
 
     // handler method to handle user registration request
