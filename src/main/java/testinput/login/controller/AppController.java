@@ -2,6 +2,7 @@ package testinput.login.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 import testinput.login.dto.UserDto;
 import testinput.login.entity.User;
+import testinput.login.service.TimeService;
 import testinput.login.service.UserService;
 
 @Controller
 public class AppController {
 
     private UserService userService;
+    
+    @Autowired 
+    private TimeService timeService;
 
     public AppController(UserService userService) {
         this.userService = userService;
@@ -60,7 +65,10 @@ public class AppController {
 
     @GetMapping("/customers")
     public String listRegisteredUsers(Model model){
+        System.out.println(timeService.getAllInventory() + "this is the all time inventory");
         List<UserDto> users = userService.findAllUsers();
+        var times  = timeService.getAllInventory();
+        model.addAttribute("times", times);
         model.addAttribute("users", users);
         return "customers";
     } 
