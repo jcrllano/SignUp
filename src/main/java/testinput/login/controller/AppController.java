@@ -43,6 +43,7 @@ public class AppController {
 
     @GetMapping("/login")
     public String loginForm() {
+        System.out.println("hello world from the tv and keyborad");
         return "login";
     }
 
