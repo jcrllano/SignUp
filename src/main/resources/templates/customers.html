@@ -177,7 +177,7 @@
                     }
                 }
             }
-    
+            alert(weekVal + " " + weekVal2 + " " + weekVal3 + " " + weekVal4 + " " + weekVal5 + " " + weekVal6);
             if ((days[2] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[2] == weekVal3 && weekVal3 == weekVal4) ||
                 (days[2] == weekVal && weekVal == weekVal2)) {
@@ -211,34 +211,34 @@
                     }
                 }
             } 
-           /*alert(days[2]);
-            if ((days[2] == weekVal5 && weekVal5 == weekVal6) ||
-                (days[2] == weekVal3 && weekVal3 == weekVal4) ||
-                (days[2] == weekVal && weekVal == weekVal2)) {
-                if (days[2] == weekVal && weekVal == weekVal2) {
+
+            if ((days[3] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[3] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[3] == weekVal && weekVal == weekVal2)) {
+                if (days[3] == weekVal && weekVal == weekVal2) {
                     var thursdayDV = document.getElementById("weekday4");
                     alert("hello world from weekday4");
                 }
-                if (days[2] == weekVal3 && weekVal3 == weekVal4) {
+                if (days[3] == weekVal3 && weekVal3 == weekVal4) {
                     var thursdayDV = document.getElementById("weekday5");
                     alert("hello world from weekday5");
                 }
-                if (days[2] == weekVal5 && weekVal5 == weekVal6) {
+                if (days[3] == weekVal5 && weekVal5 == weekVal6) {
                     var thursdayDV = document.getElementById("weekday6");
                     alert("hello world from weekday6");
                 }
                 // creating button element
-                for (i = 0; i < times2.length; i++) {
-                    if (times2[i] != "") {
+                for (i = 0; i < times4.length; i++) {
+                    if (times4[i] != "") {
                         globalVariable = i;
                         var thursdaybtn = document.createElement('A');
                         // creating text to be
                         //displayed on button
-                        var Td = document.createTextNode(times2[i]);
+                        var Td = document.createTextNode(times4[i]);
                         thursdaybtn.href = "/signup/thursday";
                         thursdaybtn.className = "btn btn-outline-primary";
                         thursdaybtn.id = "btnidW"+i;
-                        thursdaybtn.value = times2[i] + "-" + days[2];
+                        thursdaybtn.value = times4[i] + "-" + days[3];
                         thursdaybtn.onclick = test
                         // appending text to button
                         thursdaybtn.appendChild(Td);
@@ -247,7 +247,7 @@
                         thursdayDV.appendChild(thursdaybtn);
                     }
                 }
-            } */
+            }  
         } 
     
         function getVal() {
