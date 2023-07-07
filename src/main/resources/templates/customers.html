@@ -11,17 +11,18 @@
           crossorigin="anonymous">
     <script th:inline="javascript">
         var globalVariable = "";
-        alert("helo world");
         function myFunction(){
             var i;
             var w;
             var m;
             var x;
+            var y;
             var days = [];
             var times = [];
             var times2 = [];
             var times3 = [];
             var times4 = [];
+            var times5 = [];
             var x = 0;
             /*[# th:each="item : ${times}"]*/
             days.push("[(${item.day_of_week})]");
@@ -78,10 +79,24 @@
             times4.push("[(${item.time10})]");
             x++;
             /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Friday'}"]*/
+            times5.push("[(${item.time})]");
+            times5.push("[(${item.time2})]");
+            times5.push("[(${item.time3})]");
+            times5.push("[(${item.time4})]");
+            times5.push("[(${item.time5})]");
+            times5.push("[(${item.time6})]"); 
+            times5.push("[(${item.time7})]");
+            times5.push("[(${item.time8})]");
+            times5.push("[(${item.time9})]");
+            times5.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
             const dayName =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const month = ["December","January","February","March","May","June","July","August","September","October","November"];
             const dayofWeek = new Date().getDay();
             const dateMonth = new Date().getMonth();
+            alert("this is the day of the week " + dayofWeek); 
             if (dayofWeek == 6 || dayofWeek == 0) {
                 document.getElementById("weekday").innerHTML = dayName[1];
                 document.getElementById("weekday2").innerHTML = dayName[2];
@@ -122,12 +137,16 @@
     
             var weekVal5 = document.getElementById("weekday3").innerHTML;
             var weekVal6 = document.getElementById("weekday6").innerHTML;
-
+            //alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
             if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[0] == weekVal3 && weekVal3 == weekVal4) || 
                 (days[0] == weekVal && weekVal == weekVal2)) {
-                if (days[0] == weekVal && weekVal == weekVal2) {
+                if (weekVal2 == "Monday") {
+                    if (days[0] == weekVal && weekVal == weekVal2) {
                     var mondayDV = document.getElementById("weekday4");
+                }
+                if (days[0] == weekVal5 && weekVal5 == weekVal6) {
+                    var mondayDV = document.getElementById("weekday6"); 
                 }
                 // creating button element 
                 for (m = 0; m < times.length; m++) {
@@ -148,6 +167,7 @@
                         // appending button to div 
                         mondayDV.appendChild(Mondaybtn);
                     }
+                }
                 }
             }
     
@@ -217,15 +237,12 @@
                 (days[3] == weekVal && weekVal == weekVal2)) {
                 if (days[3] == weekVal && weekVal == weekVal2) {
                     var thursdayDV = document.getElementById("weekday4");
-                    alert("hello world from weekday4");
                 }
                 if (days[3] == weekVal3 && weekVal3 == weekVal4) {
                     var thursdayDV = document.getElementById("weekday5");
-                    alert("hello world from weekday5");
                 }
                 if (days[3] == weekVal5 && weekVal5 == weekVal6) {
                     var thursdayDV = document.getElementById("weekday6");
-                    alert("hello world from weekday6");
                 }
                 // creating button element
                 for (i = 0; i < times4.length; i++) {
@@ -248,6 +265,42 @@
                     }
                 }
             }  
+            alert(" this is the days " + days[0]);
+            //Friday buttons
+            if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[0] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[0] == weekVal && weekVal == weekVal2)) {
+                if (days[0] == weekVal && weekVal == weekVal2) {
+                    var fridayDV = document.getElementById("weekday4");
+                }
+                if (days[0] == weekVal3 && weekVal3 == weekVal4) {
+                    var fridayDV = document.getElementById("weekday5");
+                }
+                if (days[0] == weekVal5 && weekVal5 == weekVal6) {
+                    var fridayDV = document.getElementById("weekday6");
+                }
+                // creating button element
+                for (y = 0; y < times5.length; y++) {
+                    alert(times5[y])
+                    if (times5[y] != "") { 
+                        globalVariable = y;
+                        var fridaybtn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var fd = document.createTextNode(times5[y]);
+                        fridaybtn.href = "/signup/friday";
+                        fridaybtn.className = "btn btn-outline-primary";
+                        fridaybtn.id = "btnidW"+y;
+                        fridaybtn.value = times5[y] + "-" + days[0];
+                        fridaybtn.onclick = test
+                        // appending text to button
+                        fridaybtn.appendChild(fd);
+                        
+                        // appending button to div 
+                        fridayDV.appendChild(fridaybtn);
+                    }
+                }
+            } 
         } 
     
         function getVal() {

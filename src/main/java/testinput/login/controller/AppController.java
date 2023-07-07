@@ -47,13 +47,6 @@ public class AppController {
         return "login";
     }
 
-   /*  @GetMapping("/signup/{day}")
-    String selectTime(Model model, @PathVariable String day) {
-        day = "Monday";
-        var listTime = confirmationService.getAllAvailableTimes();
-        model.addAttribute("listTime", listTime);
-        return "confirmation";
-    }*/
 
     // handler method to handle user registration request
     @GetMapping("/register")
@@ -89,4 +82,13 @@ public class AppController {
         model.addAttribute("users", users);
         return "customers";
     } 
+
+    @GetMapping("/signup/{day}")
+    String selectTime(Model model, @PathVariable String day) {
+        day = "friday";
+        System.out.println("i been called");
+        ConfirmationTime listTime = new ConfirmationTime();
+        model.addAttribute("listTime", listTime);
+        return "confirmation";
+    }
 }
