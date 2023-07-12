@@ -11,11 +11,10 @@
     const text = myObject2.hello; 
     const weekDay = text.split('-').pop();
     const timeDay = text.split("-")[0]
+    alert(weekDay);
     function displayTimes() {
         document.getElementById('timeDisplay').innerHTML = timeDay;
-        document.getElementById('timeDisp').value = timeDay; 
-        document.getElementById("weekDay").innerHTML = weekDay;
-        document.getElementById("weekDayInput").value = weekDay;
+        document.getElementById("day").innerHTML = weekDay;
     }  
  
   </script>
@@ -30,13 +29,13 @@
 		<form action="#" th:action="@{/save}" th:object="${listTime}" method="POST">
             <div class="row">
                 <div class="col">
-                    <h6>Your Selected Day: </h6></br>
+                    <h6> Your Selected Day: </h6></br>
                     <h6>Your Selected Time: </h6></br>
                 </div>
                 <div class="col">
                     <!-- <h6 type="text" th:text="*{day_of_week}"></h6></br> -->
-                    <h6 id="weekDay" ></h6></br>
-                    <h6 id="timeDisplay"></h6></br>
+                    <h6 id="day"></h6></br>
+                    <h6 id="timeDisplay"></h6></br>  
                 </div>  
                 <div class="col"></div>
             </div>  
@@ -61,7 +60,7 @@
 			
 		</form>
     </br>
-		<a th:href="@{/customers}" class="btn btn-outline-primary"> Back to Spare Inventory List</a><br><br></div>
+		<a th:href="@{/customers}" class="btn btn-outline-primary"> Back To Time List</a><br><br></div>
 	</div>  <!-- container tag -->
 </body>
 </html>
