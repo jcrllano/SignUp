@@ -34,6 +34,7 @@ public class SpringSecurity {
                                 .requestMatchers("/signup/wednesday").permitAll()
                                 .requestMatchers("/signup/thursday").permitAll()
                                 .requestMatchers("/signup/friday").permitAll()
+                                .requestMatchers("/save").permitAll()
                                 .requestMatchers("/customers").hasRole("ADMIN")
                 ).formLogin(
                         form -> form

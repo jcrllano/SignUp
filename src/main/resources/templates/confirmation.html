@@ -11,10 +11,11 @@
     const text = myObject2.hello; 
     const weekDay = text.split('-').pop();
     const timeDay = text.split("-")[0]
-    alert(weekDay);
     function displayTimes() {
         document.getElementById('timeDisplay').innerHTML = timeDay;
         document.getElementById("day").innerHTML = weekDay;
+        document.getElementById('timeDisp').value = timeDay; 
+        document.getElementById("weekDayInput").value = weekDay;
     }  
  
   </script>
@@ -42,15 +43,15 @@
            <div class="row">
                 
                 <div class="col">
-                   <!--  <label for="inputEmail4" class="form-label">Day of Week</label>
+                    <label for="inputEmail4" class="form-label">Day of Week</label>
                     <input class="form-control" id="weekDayInput" th:field="*{dayofweek}">
                     <label for="inputEmail4" class="form-label">Time</label>
                     <input class="form-control" id="timeDisp" th:field="*{time}">
-                    <label id="fname" for="inputEmail4" class="form-label">Name</label>
+                    <!--<label id="fname" for="inputEmail4" class="form-label">Name</label>
                     <input class="form-control" th:field="*{name}">
                     <label for="inputEmail4" class="form-label">Email</label> 
-                    <input class="form-control" th:field="*{Email}">  
-                    </br>  --> 
+                    <input class="form-control" th:field="*{Email}">  -->
+                    </br>  
                     <input class="btn btn-outline-primary" type="submit" value="Submit" onclick="testJS()">
                 </div><!-- container tag -->
 

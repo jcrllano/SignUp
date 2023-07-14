@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
     <meta charset="UTF-8">
@@ -96,7 +97,7 @@
             const month = ["December","January","February","March","May","June","July","August","September","October","November"];
             const dayofWeek = new Date().getDay();
             const dateMonth = new Date().getMonth();
-            alert("this is the day of the week " + dayofWeek); 
+            alert(dayName[dayofWeek]);
             if (dayofWeek == 6 || dayofWeek == 0) {
                 document.getElementById("weekday").innerHTML = dayName[1];
                 document.getElementById("weekday2").innerHTML = dayName[2];
@@ -110,25 +111,25 @@
                 document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 4);
             
             }
-            else if ((dayofWeek + 1) == 5) {
+            if ((dayofWeek + 1) == 5) {
                 document.getElementById("weekday3").innerHTML = dayName[1];
                 document.getElementById("weekday6").innerHTML = dayName[1];
                 document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 3);
                 //dayofWeek.setDate(dayofWeek.getDate() + 3);
             }
-            else {
-                document.getElementById("weekday").innerHTML = dayName[dayofWeek];
-                document.getElementById("weekday2").innerHTML = dayName[dayofWeek + 1];
-                document.getElementById("weekday3").innerHTML = dayName[dayofWeek + 2];
+            
+            document.getElementById("weekday").innerHTML = dayName[dayofWeek];
+            document.getElementById("weekday2").innerHTML = dayName[dayofWeek + 1];
+            document.getElementById("weekday3").innerHTML = dayName[dayofWeek + 2];
+
+            document.getElementById("weekday4").innerHTML = dayName[dayofWeek];
+            document.getElementById("weekday5").innerHTML = dayName[dayofWeek + 1];
+            document.getElementById("weekday6").innerHTML = dayName[dayofWeek + 2];
+            document.getElementById("dayoftheWeek").innerHTML = month[dateMonth] + " - " +(new Date().getDate());
+            document.getElementById("dayoftheWeek2").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 1);
+            document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 2);
     
-                document.getElementById("weekday4").innerHTML = dayName[dayofWeek];
-                document.getElementById("weekday5").innerHTML = dayName[dayofWeek + 1];
-                document.getElementById("weekday6").innerHTML = dayName[dayofWeek + 2];
-                document.getElementById("dayoftheWeek").innerHTML = month[dateMonth] + " - " +(new Date().getDate());
-                document.getElementById("dayoftheWeek2").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 1);
-                document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 2);
-    
-            }
+            
             var weekVal = document.getElementById("weekday").innerHTML;
             var weekVal2 = document.getElementById("weekday4").innerHTML;
     
@@ -137,7 +138,7 @@
     
             var weekVal5 = document.getElementById("weekday3").innerHTML;
             var weekVal6 = document.getElementById("weekday6").innerHTML;
-            alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
+           alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
             if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[0] == weekVal3 && weekVal3 == weekVal4) || 
                 (days[0] == weekVal && weekVal == weekVal2)) {
@@ -268,21 +269,20 @@
 
             //Friday buttons
             if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
-                (days[0] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[5] == weekVal3 && weekVal3 == weekVal4) ||
                 (days[0] == weekVal && weekVal == weekVal2)) {
                 if (weekVal2 == "Friday") {
                     if (days[0] == weekVal && weekVal == weekVal2) {
                     var fridayDV = document.getElementById("weekday4");
                 }
-                if (days[0] == weekVal3 && weekVal3 == weekVal4) {
+                if (days[5] == weekVal3 && weekVal3 == weekVal4) {
                     var fridayDV = document.getElementById("weekday5");
                 }
                 if (days[0] == weekVal5 && weekVal5 == weekVal6) {
-                    var fridayDV = document.getElementById("weekday6");
+                    var fridayDV = document.getElementById("weekday6"); 
                 }
                 // creating button element
                 for (y = 0; y < times5.length; y++) {
-                    alert(times5[y])
                     if (times5[y] != "") { 
                         globalVariable = y;
                         var fridaybtn = document.createElement('A');
@@ -369,7 +369,7 @@
         <thead class="table-dark">
             <tr>
                 <th>First Name</th>
-                <th>Last Name</th>
+                <th>Last Name</th> 
                 <th>Email</th>
             </tr>
         </thead>

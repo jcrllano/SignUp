@@ -3,6 +3,8 @@ package testinput.login.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.validation.Valid;
 import testinput.login.dto.UserDto;
 import testinput.login.entity.ConfirmationTime;
+import testinput.login.entity.Time;
 import testinput.login.entity.User;
+import testinput.login.repository.ConfirmationTimeRepository;
+import testinput.login.repository.TimeRepository;
 import testinput.login.service.ConfirmationService;
 import testinput.login.service.TimeService;
 import testinput.login.service.UserService;
@@ -32,6 +37,9 @@ public class AppController {
     @Autowired
     private ConfirmationService confirmationService;
 
+    @Autowired
+        ConfirmationTimeRepository confirmationTimeRepository;
+
     public AppController(UserService userService) {
         this.userService = userService;
     }
@@ -43,7 +51,6 @@ public class AppController {
 
     @GetMapping("/login")
     public String loginForm() {
-        System.out.println("hello world from the tv and keyborad");
         return "login";
     }
 
@@ -77,6 +84,9 @@ public class AppController {
     public String listRegisteredUsers(Model model){
         System.out.println(timeService.getAllInventory() + "this is the all time inventory");
         List<UserDto> users = userService.findAllUsers();
+         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+    System.out.println("this is the logged in user " + loggedInUser.getName());
+    String email = loggedInUser.getName();
         var times  = timeService.getAllInventory();
         model.addAttribute("times", times);
         model.addAttribute("users", users);
@@ -91,4 +101,24 @@ public class AppController {
         model.addAttribute("listTime", listTime);
         return "confirmation";
     }
+    @PostMapping("/save")
+    public String saveTime(@ModelAttribute ConfirmationTime confirmationTime) {
+        confirmationTimeRepository.save(confirmationTime);
+        return "redirect:/customers";
+    }
+
+   @GetMapping("/")
+  public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
+
+    Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+    System.out.println("this is the logged in user " + loggedInUser);
+    String email = loggedInUser.getName(); 
+
+    // User user = userR.findByEmailAddress(email);
+    //String firstname = user.getFirstName();
+     //model.addAttribute("firstName", firstname);
+    //model.addAttribute("emailAddress", email);
+
+    return "home"; //this is the name of my template
+}
 }
