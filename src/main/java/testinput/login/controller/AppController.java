@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
+import lombok.var;
 import testinput.login.dto.UserDto;
 import testinput.login.entity.ConfirmationTime;
 import testinput.login.entity.Time;
 import testinput.login.entity.User;
 import testinput.login.repository.ConfirmationTimeRepository;
 import testinput.login.repository.TimeRepository;
+import testinput.login.repository.UserRepository;
 import testinput.login.service.ConfirmationService;
 import testinput.login.service.TimeService;
 import testinput.login.service.UserService;
@@ -39,6 +41,9 @@ public class AppController {
 
     @Autowired
         ConfirmationTimeRepository confirmationTimeRepository;
+    
+    @Autowired
+        private UserRepository userRepository;
 
     public AppController(UserService userService) {
         this.userService = userService;
@@ -82,21 +87,20 @@ public class AppController {
 
     @GetMapping("/customers")
     public String listRegisteredUsers(Model model){
-        System.out.println(timeService.getAllInventory() + "this is the all time inventory");
-        List<UserDto> users = userService.findAllUsers();
-         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-    System.out.println("this is the logged in user " + loggedInUser.getName());
-    String email = loggedInUser.getName();
+        //List<UserDto> users = userService.findAllUsers();
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        //System.out.println("this is the logged in user " + loggedInUser.getName());
+        var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        //System.out.println("this is the user email " + loggedUser.getEmail());
         var times  = timeService.getAllInventory();
         model.addAttribute("times", times);
-        model.addAttribute("users", users);
+        model.addAttribute("loggedUser", loggedUser);
         return "customers";
     } 
 
     @GetMapping("/signup/{day}")
     String selectTime(Model model, @PathVariable String day) {
         day = "friday";
-        System.out.println("i been called");
         ConfirmationTime listTime = new ConfirmationTime();
         model.addAttribute("listTime", listTime);
         return "confirmation";

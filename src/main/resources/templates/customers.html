@@ -25,6 +25,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             var times4 = [];
             var times5 = [];
             var x = 0;
+            /*[# th:each="user: ${loggedUser}"]*/
+            var name = "[(${user.name})]"
+            /*[/]*/
+
             /*[# th:each="item : ${times}"]*/
             days.push("[(${item.day_of_week})]");
             /*[/]*/
@@ -97,7 +101,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             const month = ["December","January","February","March","May","June","July","August","September","October","November"];
             const dayofWeek = new Date().getDay();
             const dateMonth = new Date().getMonth();
-            alert(dayName[dayofWeek]);
             if (dayofWeek == 6 || dayofWeek == 0) {
                 document.getElementById("weekday").innerHTML = dayName[1];
                 document.getElementById("weekday2").innerHTML = dayName[2];
@@ -138,7 +141,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     
             var weekVal5 = document.getElementById("weekday3").innerHTML;
             var weekVal6 = document.getElementById("weekday6").innerHTML;
-           alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
+           //alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
             if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[0] == weekVal3 && weekVal3 == weekVal4) || 
                 (days[0] == weekVal && weekVal == weekVal2)) {
@@ -149,7 +152,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                     if (days[0] == weekVal5 && weekVal5 == weekVal6) {
                     var mondayDV = document.getElementById("weekday6"); 
                     }
-                    // creating button element 
+                    // creating button element  
                     for (m = 0; m < times.length; m++) {
                     if (times[m] != "") {
                         globalVariable = m;
@@ -160,7 +163,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         Mondaybtn.href = "/signup/monday";
                         Mondaybtn.className = "btn btn-outline-primary";
                         Mondaybtn.id = "btnid"+m;
-                        Mondaybtn.value = times[m] + "-" + days[0];
+                        Mondaybtn.value = times[m] + "-" + days[0] + " - " + name;  
                         Mondaybtn.onclick = test
                         // appending text to button
                         Mondaybtn.appendChild(Md);
@@ -178,6 +181,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                   if (days[1] == weekVal3 && weekVal3 == weekVal4) {
                     var tuesdayDV = document.getElementById("weekday5");
                 }
+                
                 for (w = 0; w < times2.length; w++) {
                     if (times2[w] != "") {
                         globalVariable = w; 
@@ -188,7 +192,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         btn.href = "/signup/tuesday";
                         btn.className = "btn btn-outline-primary";
                         btn.id = "btnidm"+w;
-                        btn.value = times2[w] + "-" + days[1];
+                        btn.value = times2[w] + "-" + days[1] + "-" + name; 
                         btn.onclick = test
                         // appending text to button
                         btn.appendChild(d);
@@ -198,10 +202,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                     }
                 }
             }
-            alert(weekVal + " " + weekVal2 + " " + weekVal3 + " " + weekVal4 + " " + weekVal5 + " " + weekVal6);
             if ((days[2] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[2] == weekVal3 && weekVal3 == weekVal4) ||
-                (days[2] == weekVal && weekVal == weekVal2)) {
+                (days[2] == weekVal && weekVal == weekVal2)) { 
                 if (days[2] == weekVal && weekVal == weekVal2) {
                     var wednesdayDV = document.getElementById("weekday4");
                 }
@@ -222,7 +225,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         wednesdaybtn.href = "/signup/wednesday";
                         wednesdaybtn.className = "btn btn-outline-primary";
                         wednesdaybtn.id = "btnidW"+x;
-                        wednesdaybtn.value = times3[x] + "-" + days[2];
+                        wednesdaybtn.value = times3[x] + "-" + days[2] + "-" + name;
                         wednesdaybtn.onclick = test
                         // appending text to button
                         wednesdaybtn.appendChild(Wd);
@@ -256,8 +259,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         thursdaybtn.href = "/signup/thursday";
                         thursdaybtn.className = "btn btn-outline-primary";
                         thursdaybtn.id = "btnidW"+i;
-                        thursdaybtn.value = times4[i] + "-" + days[3];
-                        thursdaybtn.onclick = test
+                        thursdaybtn.value = times4[i] + "-" + days[3] + "-" + name; 
+                        thursdaybtn.onclick = test 
                         // appending text to button
                         thursdaybtn.appendChild(Td);
                         
@@ -292,9 +295,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         fridaybtn.href = "/signup/friday";
                         fridaybtn.className = "btn btn-outline-primary";
                         fridaybtn.id = "btnidW"+y;
-                        fridaybtn.value = times5[y] + "-" + days[0];
+                        fridaybtn.value = times5[y] + "-" + days[0] + "+" + name;
                         fridaybtn.onclick = test
-                        // appending text to button
+                        // appending text to button 
                         fridaybtn.appendChild(fd);
                         
                         // appending button to div 
@@ -325,6 +328,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     </script> 
 </head>
 <body onload="myFunction()"> 
+    
+<div class="container">
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarText">
@@ -361,27 +366,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 <br />
 <br />
 <br />
-<div class="container">
-    <div class="row">
-        <h1> Registered Users </h1>
-    </div>
-    <table class="table table-striped table-bordered table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th> 
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="user: ${users}">
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-            </tr>
-        </tbody>
-    </table>
-  </br></br>
   <div class="row">
       <div class="col-4"></div>
       <div class="col-4">

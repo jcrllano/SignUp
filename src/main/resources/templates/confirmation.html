@@ -9,13 +9,16 @@
     const myObjectString2 = localStorage.getItem('objectGreeting');
     const myObject2 = JSON.parse(myObjectString2);
     const text = myObject2.hello; 
-    const weekDay = text.split('-').pop();
-    const timeDay = text.split("-")[0]
+    const timeDay = text.split('-')[0];
+    const weekDay = text.split("-")[1];
+    const name =  text.split("-")[2];
     function displayTimes() {
         document.getElementById('timeDisplay').innerHTML = timeDay;
         document.getElementById("day").innerHTML = weekDay;
+        document.getElementById("name").innerHTML = name;
         document.getElementById('timeDisp').value = timeDay; 
         document.getElementById("weekDayInput").value = weekDay;
+        document.getElementById("nameInput").value = name;
     }  
  
   </script>
@@ -23,7 +26,40 @@
 </head>
 <body onload="displayTimes()">
 	<div class="container">
-		<h1>Happy Schedule</h1> 
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/home}" style = "color: white">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#" style = "color: white">How to..</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style = "color: white">Products and Services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style = "color: white">Calculators and tools</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style = "color: white">Help</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style = "color: white">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" style = "color: white" th:href="@{/logout}">Logout</a>
+                  </li>
+                </ul> 
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="How can we help?" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+		<h1>Good Morning! </h1>&nbsp;<h2 id ="name"></h2> 
 		<hr>
 		<h2>Set Your Schedule</h2>
 
@@ -43,13 +79,10 @@
            <div class="row">
                 
                 <div class="col">
-                    <label for="inputEmail4" class="form-label">Day of Week</label>
-                    <input class="form-control" id="weekDayInput" th:field="*{dayofweek}">
-                    <label for="inputEmail4" class="form-label">Time</label>
-                    <input class="form-control" id="timeDisp" th:field="*{time}">
-                    <!--<label id="fname" for="inputEmail4" class="form-label">Name</label>
-                    <input class="form-control" th:field="*{name}">
-                    <label for="inputEmail4" class="form-label">Email</label> 
+                    <input type="hidden" id="weekDayInput" th:field="*{dayofweek}">
+                    <input type="hidden" id="timeDisp" th:field="*{time}">
+                    <input type="hidden" id="nameInput" th:field="*{name}">
+                    <!--<label for="inputEmail4" class="form-label">Email</label> 
                     <input class="form-control" th:field="*{Email}">  -->
                     </br>  
                     <input class="btn btn-outline-primary" type="submit" value="Submit" onclick="testJS()">
