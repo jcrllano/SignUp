@@ -27,6 +27,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             var x = 0;
             /*[# th:each="user: ${loggedUser}"]*/
             var name = "[(${user.name})]"
+            var email = "[(${user.Email})]"
             /*[/]*/
 
             /*[# th:each="item : ${times}"]*/
@@ -141,8 +142,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     
             var weekVal5 = document.getElementById("weekday3").innerHTML;
             var weekVal6 = document.getElementById("weekday6").innerHTML;
+            
+            document.getElementById("name").innerHTML = name;
            //alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
-            if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
+           if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[0] == weekVal3 && weekVal3 == weekVal4) || 
                 (days[0] == weekVal && weekVal == weekVal2)) {
                 if (weekVal2 == "Monday") {
@@ -163,7 +166,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         Mondaybtn.href = "/signup/monday";
                         Mondaybtn.className = "btn btn-outline-primary";
                         Mondaybtn.id = "btnid"+m;
-                        Mondaybtn.value = times[m] + "-" + days[0] + " - " + name;  
+                        Mondaybtn.value = times[m] + "-" + days[0] + " - " + name + "-" + email;  
                         Mondaybtn.onclick = test
                         // appending text to button
                         Mondaybtn.appendChild(Md);
@@ -192,7 +195,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         btn.href = "/signup/tuesday";
                         btn.className = "btn btn-outline-primary";
                         btn.id = "btnidm"+w;
-                        btn.value = times2[w] + "-" + days[1] + "-" + name; 
+                        btn.value = times2[w] + "-" + days[1] + "-" + name + "-" + email; 
                         btn.onclick = test
                         // appending text to button
                         btn.appendChild(d);
@@ -225,7 +228,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         wednesdaybtn.href = "/signup/wednesday";
                         wednesdaybtn.className = "btn btn-outline-primary";
                         wednesdaybtn.id = "btnidW"+x;
-                        wednesdaybtn.value = times3[x] + "-" + days[2] + "-" + name;
+                        wednesdaybtn.value = times3[x] + "-" + days[2] + "-" + name + "-" + email;
                         wednesdaybtn.onclick = test
                         // appending text to button
                         wednesdaybtn.appendChild(Wd);
@@ -259,7 +262,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         thursdaybtn.href = "/signup/thursday";
                         thursdaybtn.className = "btn btn-outline-primary";
                         thursdaybtn.id = "btnidW"+i;
-                        thursdaybtn.value = times4[i] + "-" + days[3] + "-" + name; 
+                        thursdaybtn.value = times4[i] + "-" + days[3] + "-" + name + "-" + email; 
                         thursdaybtn.onclick = test 
                         // appending text to button
                         thursdaybtn.appendChild(Td);
@@ -295,7 +298,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                         fridaybtn.href = "/signup/friday";
                         fridaybtn.className = "btn btn-outline-primary";
                         fridaybtn.id = "btnidW"+y;
-                        fridaybtn.value = times5[y] + "-" + days[0] + "+" + name;
+                        fridaybtn.value = times5[y] + "-" + days[0] + "+" + name + "-" + email;
                         fridaybtn.onclick = test
                         // appending text to button 
                         fridaybtn.appendChild(fd);
@@ -364,8 +367,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         </div>
       </nav>
 <br />
-<br />
-<br />
+<h3>Good Morning! </h3>&nbsp;
+<h4 id ="name"></h4> 
   <div class="row">
       <div class="col-4"></div>
       <div class="col-4">

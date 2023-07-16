@@ -12,6 +12,7 @@
     const timeDay = text.split('-')[0];
     const weekDay = text.split("-")[1];
     const name =  text.split("-")[2];
+    const email =  text.split("-")[3];
     function displayTimes() {
         document.getElementById('timeDisplay').innerHTML = timeDay;
         document.getElementById("day").innerHTML = weekDay;
@@ -19,10 +20,11 @@
         document.getElementById('timeDisp').value = timeDay; 
         document.getElementById("weekDayInput").value = weekDay;
         document.getElementById("nameInput").value = name;
+        document.getElementById("emailInput").value = email;
     }  
  
   </script>
-<title>Spare Inventory Management System</title>
+<title>Confirm Time</title>
 </head>
 <body onload="displayTimes()">
 	<div class="container">
@@ -82,8 +84,7 @@
                     <input type="hidden" id="weekDayInput" th:field="*{dayofweek}">
                     <input type="hidden" id="timeDisp" th:field="*{time}">
                     <input type="hidden" id="nameInput" th:field="*{name}">
-                    <!--<label for="inputEmail4" class="form-label">Email</label> 
-                    <input class="form-control" th:field="*{Email}">  -->
+                    <input type="hidden" id="emailInput" th:field="*{Email}"> 
                     </br>  
                     <input class="btn btn-outline-primary" type="submit" value="Submit" onclick="testJS()">
                 </div><!-- container tag -->
