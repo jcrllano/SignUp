@@ -59,6 +59,10 @@ public class AppController {
         return "login";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
 
     // handler method to handle user registration request
     @GetMapping("/register")
@@ -108,8 +112,13 @@ public class AppController {
     @PostMapping("/save")
     public String saveTime(@ModelAttribute ConfirmationTime confirmationTime) {
         confirmationTimeRepository.save(confirmationTime);
-        return "redirect:/customers";
+        return "redirect:/appointmentSucess";
     }
+
+   // @GetMapping("/apptconfirmsucess")
+   // public String appointmentConfirmSucess() {
+     //   return "appointmentSucess";
+    //}
 
    @GetMapping("/")
   public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {

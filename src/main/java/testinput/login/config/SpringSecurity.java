@@ -29,11 +29,13 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/home").permitAll()
+                                .requestMatchers("/about").permitAll()
                                 .requestMatchers("/signup/monday").permitAll()
                                 .requestMatchers("/signup/tuesday").permitAll()
                                 .requestMatchers("/signup/wednesday").permitAll()
                                 .requestMatchers("/signup/thursday").permitAll()
                                 .requestMatchers("/signup/friday").permitAll()
+                                .requestMatchers("/appointmentSucess").permitAll()
                                 .requestMatchers("/save").permitAll()
                                 .requestMatchers("/customers").hasRole("ADMIN")
                 ).formLogin(
