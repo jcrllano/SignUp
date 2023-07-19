@@ -145,11 +145,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             
             document.getElementById("name").innerHTML = name;
            //alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
+           alert(days[1])
            if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
                 (days[0] == weekVal3 && weekVal3 == weekVal4) || 
-                (days[0] == weekVal && weekVal == weekVal2)) {
+                (days[1] == weekVal && weekVal == weekVal2)) {
+                alert("hello world"); 
                 if (weekVal2 == "Monday") {
-                    if (days[0] == weekVal && weekVal == weekVal2) {
+                    if (days[1] == weekVal && weekVal == weekVal2) {
                     var mondayDV = document.getElementById("weekday4");
                     }
                     if (days[0] == weekVal5 && weekVal5 == weekVal6) {

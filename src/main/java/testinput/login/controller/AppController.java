@@ -112,7 +112,7 @@ public class AppController {
     @PostMapping("/save")
     public String saveTime(@ModelAttribute ConfirmationTime confirmationTime) {
         confirmationTimeRepository.save(confirmationTime);
-        return "redirect:/appointmentSucess";
+        return "appointmentSucess";
     }
 
    // @GetMapping("/apptconfirmsucess")

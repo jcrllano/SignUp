@@ -5,25 +5,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script>
-    const myObjectString2 = localStorage.getItem('objectGreeting');
-    const myObject2 = JSON.parse(myObjectString2);
-    const text = myObject2.hello; 
-    const timeDay = text.split('-')[0];
-    const weekDay = text.split("-")[1];
-    const name =  text.split("-")[2];
-    const email =  text.split("-")[3];
-    function displayTimes() {
-        document.getElementById('timeDisplay').innerHTML = timeDay;
-        document.getElementById("day").innerHTML = weekDay;
-        document.getElementById("name").innerHTML = name;
-        document.getElementById('timeDisp').value = timeDay; 
-        document.getElementById("weekDayInput").value = weekDay;
-        document.getElementById("nameInput").value = name;
-        document.getElementById("emailInput").value = email;
-    }  
- 
-  </script>
 <title>Confirm Time</title>
 </head>
 <body onload="displayTimes()">
