@@ -22,6 +22,13 @@ public class UserDto {
     private String firstName;
     @NotEmpty
     private String lastName;
+    
+    private String ssn;
+    private String address;
+    private String address2;
+    private String city;
+    private String state;
+    private String zipcode;
     @NotEmpty(message = "Email should not be empty")
     @Email
     private String email;

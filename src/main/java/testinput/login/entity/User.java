@@ -34,6 +34,13 @@ public class User {
     @Column(nullable=false)
     private String name;
 
+    private String snn;
+    private String address;
+    private String address2;
+    private String city;
+    private String state;
+    private String zipcode;
+
     @Column(nullable=false, unique=true)
     private String email;
 

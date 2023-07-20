@@ -33,6 +33,12 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
+        user.setAddress(userDto.getAddress());
+        user.setAddress2(userDto.getAddress2());
+        user.setCity(userDto.getCity());
+        user.setState(userDto.getState());
+        user.setZipcode(userDto.getZipcode());
+        user.setSnn(userDto.getSsn());
 
         //encrypt the password once we integrate spring security
         //user.setPassword(userDto.getPassword());

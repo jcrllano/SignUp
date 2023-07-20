@@ -83,7 +83,91 @@
                            th:if="${#fields.hasErrors('lastName')}">
                         </p>
                     </div>
+
+                    <div class="form-group mb-3">
+                      <label class="form-label">Social Security Number</label>
+                      <input class="form-control"
+                             id="ssn"
+                             name="ssn"
+                             placeholder="Enter your social security number"
+                             th:field="*{ssn}"
+                             type="text"
+                      />
+                      <p th:errors="*{ssn}" class="text-danger"
+                         th:if="${#fields.hasErrors('ssn')}">
+                      </p>
+                  </div>
                     
+                    <div class="form-group mb-3">
+                      <label class="form-label">Address</label>
+                      <input class="form-control"
+                             id="address"
+                             name="address"
+                             placeholder="Enter Address"
+                             th:field="*{address}"
+                             type="text"
+                      />
+                      <p th:errors="*{address}" class="text-danger"
+                         th:if="${#fields.hasErrors('address')}">
+                      </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label class="form-label">Address 2</label>
+                      <input class="form-control"
+                             id="address2"
+                             name="address2"
+                             placeholder="Enter Address 2"
+                             th:field="*{address2}"
+                             type="text"
+                      />
+                      <p th:errors="*{address2}" class="text-danger"
+                         th:if="${#fields.hasErrors('address2')}">
+                      </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label class="form-label">City</label>
+                      <input class="form-control"
+                             id="city"
+                             name="city"
+                             placeholder="Enter City"
+                             th:field="*{city}"
+                             type="text"
+                      />
+                      <p th:errors="*{city}" class="text-danger"
+                         th:if="${#fields.hasErrors('city')}">
+                      </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label class="form-label">State</label>
+                      <input class="form-control"
+                             id="state"
+                             name="state"
+                             placeholder="Enter State"
+                             th:field="*{state}"
+                             type="text"
+                      />
+                      <p th:errors="*{state}" class="text-danger"
+                         th:if="${#fields.hasErrors('state')}">
+                      </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label class="form-label">Zip Code</label>
+                      <input class="form-control"
+                             id="zipcode"
+                             name="zipcode"
+                             placeholder="Enter Zip Code"
+                             th:field="*{zipcode}"
+                             type="text"
+                      /> 
+                      <p th:errors="*{zipcode}" class="text-danger"
+                         th:if="${#fields.hasErrors('zipcode')}">
+                      </p>
+                    </div>
+
 
                     <div class="form-group mb-3">
                         <label class="form-label">Email</label>
