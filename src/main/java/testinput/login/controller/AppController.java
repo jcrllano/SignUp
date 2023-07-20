@@ -90,8 +90,21 @@ public class AppController {
     }
 
     @GetMapping("/customers")
-    public String listRegisteredUsers(Model model){
+    public String CustomerMainPage(Model model){
         //List<UserDto> users = userService.findAllUsers();
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        //System.out.println("this is the logged in user " + loggedInUser.getName());
+        var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        //System.out.println("this is the user email " + loggedUser.getEmail());
+        //var times  = timeService.getAllInventory();
+       // model.addAttribute("times", times);
+        model.addAttribute("loggedUser", loggedUser);
+        return "customers";
+    } 
+
+    @GetMapping("/appointmentsetup")
+    public String appointmentSetUp(Model model) {
+         //List<UserDto> users = userService.findAllUsers();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         //System.out.println("this is the logged in user " + loggedInUser.getName());
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
@@ -99,8 +112,16 @@ public class AppController {
         var times  = timeService.getAllInventory();
         model.addAttribute("times", times);
         model.addAttribute("loggedUser", loggedUser);
-        return "customers";
-    } 
+        return "appointmentsetup";
+    }
+
+     @GetMapping("/creditcardapply")
+    public String creditCardApply(Model model) {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        model.addAttribute("loggedUser", loggedUser);
+        return "creditcardapply";
+    }
 
     @GetMapping("/signup/{day}")
     String selectTime(Model model, @PathVariable String day) {

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration and Login System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <script th:inline="javascript">
+        var globalVariable = "";
+        function myFunction(){
+            var i;
+            var w;
+            var m;
+            var x;
+            var y;
+            var days = [];
+            var times = [];
+            var times2 = [];
+            var times3 = [];
+            var times4 = [];
+            var times5 = [];
+            var x = 0;
+            /*[# th:each="user: ${loggedUser}"]*/
+            var name = "[(${user.name})]"
+            var email = "[(${user.Email})]"
+            /*[/]*/
+
+            /*[# th:each="item : ${times}"]*/
+            days.push("[(${item.day_of_week})]");
+            /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Monday'}"]*/
+            times.push("[(${item.time})]");
+            times.push("[(${item.time2})]");
+            times.push("[(${item.time3})]");
+            times.push("[(${item.time4})]");
+            times.push("[(${item.time5})]");
+            times.push("[(${item.time6})]");
+            times.push("[(${item.time7})]");
+            times.push("[(${item.time8})]");
+            times.push("[(${item.time9})]");
+            times.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Tuesday'}"]*/
+            times2.push("[(${item.time})]");
+            times2.push("[(${item.time2})]");
+            times2.push("[(${item.time3})]");
+            times2.push("[(${item.time4})]");
+            times2.push("[(${item.time5})]");
+            times2.push("[(${item.time6})]"); 
+            times2.push("[(${item.time7})]");
+            times2.push("[(${item.time8})]");
+            times2.push("[(${item.time9})]");
+            times2.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Wednesday'}"]*/
+            times3.push("[(${item.time})]");
+            times3.push("[(${item.time2})]");
+            times3.push("[(${item.time3})]");
+            times3.push("[(${item.time4})]");
+            times3.push("[(${item.time5})]");
+            times3.push("[(${item.time6})]"); 
+            times3.push("[(${item.time7})]");
+            times3.push("[(${item.time8})]");
+            times3.push("[(${item.time9})]");
+            times3.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Thursday'}"]*/
+            times4.push("[(${item.time})]");
+            times4.push("[(${item.time2})]");
+            times4.push("[(${item.time3})]");
+            times4.push("[(${item.time4})]");
+            times4.push("[(${item.time5})]");
+            times4.push("[(${item.time6})]"); 
+            times4.push("[(${item.time7})]");
+            times4.push("[(${item.time8})]");
+            times4.push("[(${item.time9})]");
+            times4.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
+            /*[# th:each="item : ${times}" th:if="${item.day_of_week == 'Friday'}"]*/
+            times5.push("[(${item.time})]");
+            times5.push("[(${item.time2})]");
+            times5.push("[(${item.time3})]");
+            times5.push("[(${item.time4})]");
+            times5.push("[(${item.time5})]");
+            times5.push("[(${item.time6})]"); 
+            times5.push("[(${item.time7})]");
+            times5.push("[(${item.time8})]");
+            times5.push("[(${item.time9})]");
+            times5.push("[(${item.time10})]");
+            x++;
+            /*[/]*/
+            const dayName =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const month = ["December","January","February","March","May","June","July","August","September","October","November"];
+            const dayofWeek = new Date().getDay();
+            const dateMonth = new Date().getMonth();
+            if (dayofWeek == 6 || dayofWeek == 0) {
+                document.getElementById("weekday").innerHTML = dayName[1];
+                document.getElementById("weekday2").innerHTML = dayName[2];
+                document.getElementById("weekday3").innerHTML = dayName[3];
+    
+                document.getElementById("weekday4").innerHTML = dayName[1];
+                document.getElementById("weekday5").innerHTML = dayName[2];
+                document.getElementById("weekday6").innerHTML = dayName[3];
+                document.getElementById("dayoftheWeek").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 2);
+                document.getElementById("dayoftheWeek2").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 3);
+                document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 4);
+            
+            }
+            if ((dayofWeek + 1) == 5) {
+                document.getElementById("weekday3").innerHTML = dayName[1];
+                document.getElementById("weekday6").innerHTML = dayName[1];
+                document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 3);
+                //dayofWeek.setDate(dayofWeek.getDate() + 3);
+            }
+            
+            document.getElementById("weekday").innerHTML = dayName[dayofWeek];
+            document.getElementById("weekday2").innerHTML = dayName[dayofWeek + 1];
+            document.getElementById("weekday3").innerHTML = dayName[dayofWeek + 2];
+
+            document.getElementById("weekday4").innerHTML = dayName[dayofWeek];
+            document.getElementById("weekday5").innerHTML = dayName[dayofWeek + 1];
+            document.getElementById("weekday6").innerHTML = dayName[dayofWeek + 2];
+            document.getElementById("dayoftheWeek").innerHTML = month[dateMonth] + " - " +(new Date().getDate());
+            document.getElementById("dayoftheWeek2").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 1);
+            document.getElementById("dayoftheWeek3").innerHTML = month[dateMonth] + " - " +(new Date().getDate() + 2);
+    
+            
+            var weekVal = document.getElementById("weekday").innerHTML;
+            var weekVal2 = document.getElementById("weekday4").innerHTML;
+    
+            var weekVal3 = document.getElementById("weekday2").innerHTML;
+            var weekVal4 = document.getElementById("weekday5").innerHTML;
+    
+            var weekVal5 = document.getElementById("weekday3").innerHTML;
+            var weekVal6 = document.getElementById("weekday6").innerHTML;
+            
+            document.getElementById("name").innerHTML = name;
+           //alert(" this is 1 and 2 " + weekVal + " " + weekVal2 + " " + " this is 3 and 4 " + weekVal3 + " " + weekVal4 + " " + " this is 5 and 6 "+ weekVal5 + " " + weekVal6); 
+           alert(days[1])
+           if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[0] == weekVal3 && weekVal3 == weekVal4) || 
+                (days[1] == weekVal && weekVal == weekVal2)) {
+                alert("hello world"); 
+                if (weekVal2 == "Monday") {
+                    if (days[1] == weekVal && weekVal == weekVal2) {
+                    var mondayDV = document.getElementById("weekday4");
+                    }
+                    if (days[0] == weekVal5 && weekVal5 == weekVal6) {
+                    var mondayDV = document.getElementById("weekday6"); 
+                    }
+                    // creating button element  
+                    for (m = 0; m < times.length; m++) {
+                    if (times[m] != "") {
+                        globalVariable = m;
+                        var Mondaybtn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var Md = document.createTextNode(times[m]);
+                        Mondaybtn.href = "/signup/monday";
+                        Mondaybtn.className = "btn btn-outline-primary";
+                        Mondaybtn.id = "btnid"+m;
+                        Mondaybtn.value = times[m] + "-" + days[0] + " - " + name + "-" + email;  
+                        Mondaybtn.onclick = test
+                        // appending text to button
+                        Mondaybtn.appendChild(Md);
+                        
+                        // appending button to div 
+                        mondayDV.appendChild(Mondaybtn);
+                    }
+                }
+                }
+            }
+    
+    
+            if ((days[1] == weekVal3 && weekVal3 == weekVal4) || 
+                (days[1] == weekVal && weekVal == weekVal2) ) {
+                  if (days[1] == weekVal3 && weekVal3 == weekVal4) {
+                    var tuesdayDV = document.getElementById("weekday5");
+                }
+                
+                for (w = 0; w < times2.length; w++) {
+                    if (times2[w] != "") {
+                        globalVariable = w; 
+                        var btn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var d = document.createTextNode(times2[w]);
+                        btn.href = "/signup/tuesday";
+                        btn.className = "btn btn-outline-primary";
+                        btn.id = "btnidm"+w;
+                        btn.value = times2[w] + "-" + days[1] + "-" + name + "-" + email; 
+                        btn.onclick = test
+                        // appending text to button
+                        btn.appendChild(d);
+                         
+                        // appending button to div  
+                        tuesdayDV.appendChild(btn);
+                    }
+                }
+            }
+            if ((days[2] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[2] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[2] == weekVal && weekVal == weekVal2)) { 
+                if (days[2] == weekVal && weekVal == weekVal2) {
+                    var wednesdayDV = document.getElementById("weekday4");
+                }
+                if (days[2] == weekVal3 && weekVal3 == weekVal4) {
+                    var wednesdayDV = document.getElementById("weekday5");
+                }
+                if (days[2] == weekVal5 && weekVal5 == weekVal6) {
+                    var wednesdayDV = document.getElementById("weekday6");
+                }
+                // creating button element
+                for (x = 0; x < times3.length; x++) {
+                    if (times3[x] != "") {
+                        globalVariable = x;
+                        var wednesdaybtn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var Wd = document.createTextNode(times3[x]);
+                        wednesdaybtn.href = "/signup/wednesday";
+                        wednesdaybtn.className = "btn btn-outline-primary";
+                        wednesdaybtn.id = "btnidW"+x;
+                        wednesdaybtn.value = times3[x] + "-" + days[2] + "-" + name + "-" + email;
+                        wednesdaybtn.onclick = test
+                        // appending text to button
+                        wednesdaybtn.appendChild(Wd);
+                        
+                        // appending button to div 
+                        wednesdayDV.appendChild(wednesdaybtn);
+                    }
+                }
+            } 
+
+            if ((days[3] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[3] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[3] == weekVal && weekVal == weekVal2)) {
+                if (days[3] == weekVal && weekVal == weekVal2) {
+                    var thursdayDV = document.getElementById("weekday4");
+                }
+                if (days[3] == weekVal3 && weekVal3 == weekVal4) {
+                    var thursdayDV = document.getElementById("weekday5");
+                }
+                if (days[3] == weekVal5 && weekVal5 == weekVal6) {
+                    var thursdayDV = document.getElementById("weekday6");
+                }
+                // creating button element
+                for (i = 0; i < times4.length; i++) {
+                    if (times4[i] != "") {
+                        globalVariable = i;
+                        var thursdaybtn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var Td = document.createTextNode(times4[i]);
+                        thursdaybtn.href = "/signup/thursday";
+                        thursdaybtn.className = "btn btn-outline-primary";
+                        thursdaybtn.id = "btnidW"+i;
+                        thursdaybtn.value = times4[i] + "-" + days[3] + "-" + name + "-" + email; 
+                        thursdaybtn.onclick = test 
+                        // appending text to button
+                        thursdaybtn.appendChild(Td);
+                        
+                        // appending button to div 
+                        thursdayDV.appendChild(thursdaybtn);
+                    }
+                }
+            }  
+
+            //Friday buttons
+            if ((days[0] == weekVal5 && weekVal5 == weekVal6) ||
+                (days[5] == weekVal3 && weekVal3 == weekVal4) ||
+                (days[0] == weekVal && weekVal == weekVal2)) {
+                if (weekVal2 == "Friday") {
+                    if (days[0] == weekVal && weekVal == weekVal2) {
+                    var fridayDV = document.getElementById("weekday4");
+                }
+                if (days[5] == weekVal3 && weekVal3 == weekVal4) {
+                    var fridayDV = document.getElementById("weekday5");
+                }
+                if (days[0] == weekVal5 && weekVal5 == weekVal6) {
+                    var fridayDV = document.getElementById("weekday6"); 
+                }
+                // creating button element
+                for (y = 0; y < times5.length; y++) {
+                    if (times5[y] != "") { 
+                        globalVariable = y;
+                        var fridaybtn = document.createElement('A');
+                        // creating text to be
+                        //displayed on button
+                        var fd = document.createTextNode(times5[y]);
+                        fridaybtn.href = "/signup/friday";
+                        fridaybtn.className = "btn btn-outline-primary";
+                        fridaybtn.id = "btnidW"+y;
+                        fridaybtn.value = times5[y] + "-" + days[0] + "+" + name + "-" + email;
+                        fridaybtn.onclick = test
+                        // appending text to button 
+                        fridaybtn.appendChild(fd);
+                        
+                        // appending button to div 
+                        fridayDV.appendChild(fridaybtn);
+                    }
+                }
+                }
+                
+            } 
+
+
+        } 
+    
+        function getVal() {
+              
+        }
+    
+        function test() {
+            var testVal = "";
+            document.addEventListener('click', function(e) {
+            testVal = e.target.id;  
+            var testid = document.getElementById(testVal);
+            const myObject = { hello: testid.value};  
+            const myObjectString = JSON.stringify(myObject);
+            localStorage.setItem('objectGreeting', myObjectString);
+            }, false);
+        }
+    </script> 
+</head>
+<body onload="myFunction()"> 
+    
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/home}" style = "color: white">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#" style = "color: white">How to..</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Products and Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Calculators and tools</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">Help</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style = "color: white">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style = "color: white" th:href="@{/logout}">Logout</a>
+              </li>
+            </ul> 
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="How can we help?" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+<br />
+<h3>Good Morning! </h3>&nbsp;
+<h4 id ="name"></h4> 
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a href="#section-2">Set up an appointment</a><br />
+    </div>
+</div>
+</br>
+  <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+          <h3>Schedule Appointment</h3>
+      </div>
+      <div class="col-4"></div>
+  </div> <!--1st row class-->
+  </br></br>
+  <div class="row" >
+      <div class="col-2"></div>
+      <div class="col-2" id="weekday"></div>
+      <div class="col-2" id="weekday2"></div>
+      <div class="col-2" id="weekday3"></div>
+  </div> <!--2nd row class-->
+  <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2" id="dayoftheWeek"></div>
+      <div class="col-2" id="dayoftheWeek2"></div>
+      <div class="col-2" id="dayoftheWeek3"></div>
+  </div>
+  </br></br>
+  <div class="row">
+      <div class="col-2"></div>
+      <div class="col-1" >
+          <div class="row" id = "weekday4">
+
+          </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-1" >
+          <div class="row" id = "weekday5">
+
+          </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-1" >
+          <div class="row" id = "weekday6">
+
+          </div>
+      </div>
+  </div>
+</br>
+</div>
+</body>
+</html>
