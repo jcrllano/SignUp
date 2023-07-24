@@ -3,8 +3,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import testinput.login.dto.UserDto;
+import testinput.login.entity.Checking;
 import testinput.login.entity.Role;
 import testinput.login.entity.User;
+import testinput.login.repository.CheckingRepository;
 import testinput.login.repository.RoleRepository;
 import testinput.login.repository.UserRepository;
 import testinput.login.service.UserService;
@@ -19,6 +21,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private CheckingRepository checkingRepository;
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
@@ -45,9 +48,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if(role == null){
-            role = checkRoleExist();
+            role = checkRoleExist(); 
         }
         user.setRoles(Arrays.asList(role));
+        System.out.println("this is the role set " + user.getRoles());
         userRepository.save(user);
     }
 

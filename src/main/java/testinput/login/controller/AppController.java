@@ -2,6 +2,7 @@ package testinput.login.controller;
 
 import java.util.List;
 
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.validation.Valid;
 import lombok.var;
 import testinput.login.dto.UserDto;
+import testinput.login.entity.Checking;
 import testinput.login.entity.ConfirmationTime;
 import testinput.login.entity.Time;
 import testinput.login.entity.User;
+import testinput.login.repository.CheckingRepository;
 import testinput.login.repository.ConfirmationTimeRepository;
 import testinput.login.repository.TimeRepository;
 import testinput.login.repository.UserRepository;
@@ -44,6 +47,9 @@ public class AppController {
     
     @Autowired
         private UserRepository userRepository;
+    
+    @Autowired
+        private CheckingRepository checkingRepository;
 
     public AppController(UserService userService) {
         this.userService = userService;
@@ -87,28 +93,28 @@ public class AppController {
         }
         userService.saveUser(user);
         return "redirect:/register?success";
-    }
+    } 
 
     @GetMapping("/customers")
     public String CustomerMainPage(Model model){
-        //List<UserDto> users = userService.findAllUsers();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        //System.out.println("this is the logged in user " + loggedInUser.getName());
+        var customerID = checkingRepository.findById(1);
+        var customerID2 = userRepository.findById(1);
+        var checkingBalance = "";
+        if (customerID.get().getId() == customerID2.get().getId()) {
+            checkingBalance = customerID.get().getAvailableBalance();
+        }
+        System.out.println("this is the balance outside" + checkingBalance);
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        //System.out.println("this is the user email " + loggedUser.getEmail());
-        //var times  = timeService.getAllInventory();
-       // model.addAttribute("times", times);
+        model.addAttribute("checkingBalance", checkingBalance);
         model.addAttribute("loggedUser", loggedUser);
-        return "customers";
+        return "customers"; 
     } 
 
     @GetMapping("/appointmentsetup")
     public String appointmentSetUp(Model model) {
-         //List<UserDto> users = userService.findAllUsers();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        //System.out.println("this is the logged in user " + loggedInUser.getName());
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        //System.out.println("this is the user email " + loggedUser.getEmail());
         var times  = timeService.getAllInventory();
         model.addAttribute("times", times);
         model.addAttribute("loggedUser", loggedUser);
@@ -135,11 +141,6 @@ public class AppController {
         confirmationTimeRepository.save(confirmationTime);
         return "appointmentSucess";
     }
-
-   // @GetMapping("/apptconfirmsucess")
-   // public String appointmentConfirmSucess() {
-     //   return "appointmentSucess";
-    //}
 
    @GetMapping("/")
   public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {

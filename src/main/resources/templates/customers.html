@@ -13,15 +13,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     <script th:inline="javascript">
         var globalVariable = "";
         function myFunction(){
-            /*[# th:each="user: ${loggedUser}"]*/
+          /*[# th:each="user: ${loggedUser}"]*/
             var name = "[(${user.name})]"
             var email = "[(${user.Email})]"
             /*[/]*/
             document.getElementById("name").innerHTML = name;
+
+
         }
 
     </script> 
-</head>
+</head> 
 <body onload="myFunction()"> 
     
 <div class="container">
@@ -57,34 +59,63 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             </form>
           </div>
         </div>
-      </nav>
-<br />
-<h3>Good Morning! </h3>&nbsp;
-<h4 id ="name"></h4> 
-<div class="row">
-    <div class="col-4"></div>
-    <div class="col-4"></div>
-    <div class="col-4">
-        <a th:href="@{/appointmentsetup}" class="btn btn-primary">Set up an appointment</a><br />
-    </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-4"></div>
-  <div class="col-4"></div>
-  <div class="col-4">
-      <a th:href="@{/creditcardapply}" class="btn btn-primary">Apply for a credit card</a><br />
-  </div>
-</div>
-</br>
-  <div class="row">
+    </nav> <!--navigation bar menu tabs-->
+    <br />
+    <h3>Good Morning! </h3>&nbsp;
+    <h4 id ="name"></h4> 
+    <div class="row">
+      <div class="col-4"></div>
       <div class="col-4"></div>
       <div class="col-4">
+          <a th:href="@{/appointmentsetup}" class="btn btn-primary">Set up an appointment</a><br />
       </div>
-      <div class="col-4"></div>
-  </div> <!--1st row class-->
-  </br></br>
-  </div>
+    </div> <!--row div-->
+    <br>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-6">
+        <h2>My Accounts</h2>
+        <br>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Accounts</th>
+              <th scope="col">Current Balance</th>
+              <th scope="col">Available Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Checking</th>
+              <td>$ 10,000</td>
+              <td>$ 9,500</td>
+            </tr>
+            <br> 
+            <tr>
+              <th scope="row">Savings</th>
+              <td>$ 2,000</td> 
+              <td>$ 2,800</td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+          <a th:href="@{/creditcardapply}" class="btn btn-primary">Apply for a credit card</a><br/><br/>
+          <a th:href="@{/maketransfer}" class="btn btn-primary">Make A Transfer</a><br /><br/>
+          <a th:href="@{/makedeposit}" class="btn btn-primary">Make A Deposit</a><br />
+      </div>
+    </div> <!--row div-->
+    </br> 
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+        </div>
+        <div class="col-4"></div>
+    </div> <!--row div-->
+    </br></br>
+</div>
 </br>
 </div>
 </body>

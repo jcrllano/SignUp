@@ -61,6 +61,8 @@
 			<optional>true</optional>
 		</dependency>
 
+	
+
 		<!-- MySQL dependency -->
         <dependency>
     		<groupId>mysql</groupId>
