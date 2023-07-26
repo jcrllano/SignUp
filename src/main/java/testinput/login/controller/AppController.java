@@ -100,13 +100,12 @@ public class AppController {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var customerID = checkingRepository.findById(1);
         var customerID2 = userRepository.findById(1);
-        var checkingBalance = "";
-        if (customerID.get().getId() == customerID2.get().getId()) {
-            checkingBalance = customerID.get().getAvailableBalance();
-        }
-        System.out.println("this is the balance outside" + checkingBalance);
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        model.addAttribute("checkingBalance", checkingBalance);
+        var availableBalance = "";
+        if (customerID.get().getId() == customerID2.get().getId()) {
+            availableBalance = customerID.get().getAvailableBalance();
+        }
+        model.addAttribute("availableBalance", availableBalance); 
         model.addAttribute("loggedUser", loggedUser);
         return "customers"; 
     } 

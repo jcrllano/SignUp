@@ -13,13 +13,15 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     <script th:inline="javascript">
         var globalVariable = "";
         function myFunction(){
-          /*[# th:each="user: ${loggedUser}"]*/
+          /*[# th:each="user: ${loggedUser}"]*/'default';
             var name = "[(${user.name})]"
             var email = "[(${user.Email})]"
             /*[/]*/
             document.getElementById("name").innerHTML = name;
 
-
+            var availableBal = /*[[${availableBalance}]]*/ ""; 
+            document.getElementById("availableBal").innerHTML = "$ " + availableBal;
+            alert(availableBal);
         }
 
     </script> 
@@ -88,7 +90,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
           <tbody>
             <tr>
               <th scope="row">Checking</th>
-              <td>$ 10,000</td>
+              <td id="availableBal"></td>  
               <td>$ 9,500</td>
             </tr>
             <br> 
