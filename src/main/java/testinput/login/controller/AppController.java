@@ -98,14 +98,17 @@ public class AppController {
     @GetMapping("/customers")
     public String CustomerMainPage(Model model){
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        var customerID = checkingRepository.findById(1);
-        var customerID2 = userRepository.findById(1);
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        var customerID = checkingRepository.findById(loggedUser.getId()); 
+        var customerID2 = userRepository.findById(loggedUser.getId());
         var availableBalance = "";
+        var currentBalance = "";
         if (customerID.get().getId() == customerID2.get().getId()) {
             availableBalance = customerID.get().getAvailableBalance();
+            currentBalance = customerID.get().getBalance();
         }
-        model.addAttribute("availableBalance", availableBalance); 
+        model.addAttribute("availableBalance", availableBalance);
+        model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
         return "customers"; 
     } 

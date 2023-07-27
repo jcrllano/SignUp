@@ -20,8 +20,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             document.getElementById("name").innerHTML = name;
 
             var availableBal = /*[[${availableBalance}]]*/ ""; 
+            var currentBal = /*[[${currentBalance}]]*/ ""; 
             document.getElementById("availableBal").innerHTML = "$ " + availableBal;
-            alert(availableBal);
+            document.getElementById("currentBal").innerHTML = "$ " + currentBal;
         }
 
     </script> 
@@ -91,7 +92,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             <tr>
               <th scope="row">Checking</th>
               <td id="availableBal"></td>  
-              <td>$ 9,500</td>
+              <td id="currentBal"></td>
             </tr>
             <br> 
             <tr>
