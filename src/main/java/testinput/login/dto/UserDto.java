@@ -17,7 +17,7 @@ import testinput.login.service.TimeService;
 public class UserDto {
     TimeService timeService;
 
-    private Long id;
+    private Integer id;
     @NotEmpty
     private String firstName;
     @NotEmpty

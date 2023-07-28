@@ -42,16 +42,12 @@ public class UserServiceImpl implements UserService {
         user.setState(userDto.getState());
         user.setZipcode(userDto.getZipcode());
         user.setSnn(passwordEncoder.encode(userDto.getSsn()));
-
-        //encrypt the password once we integrate spring security
-        //user.setPassword(userDto.getPassword());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if(role == null){
             role = checkRoleExist(); 
         }
         user.setRoles(Arrays.asList(role));
-        System.out.println("this is the role set " + user.getRoles());
         userRepository.save(user);
     }
 
