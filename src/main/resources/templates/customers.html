@@ -23,16 +23,19 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             var currentBal = /*[[${currentBalance}]]*/ ""; 
             document.getElementById("availableBal").innerHTML = "$ " + availableBal;
             document.getElementById("currentBal").innerHTML = "$ " + currentBal;
+
+            document.getElementById("toggleVisibilityButton").addEventListener("click", function(button) {    
+            if (document.getElementById("displaytable").style.display === "none") {
+                document.getElementById("displaytable").style.display = "block";
+            }	     
+            else {
+                document.getElementById("displaytable").style.display = "none";
+            }
+            });
         }
-        function show(nr) {
-          document.getElementById("table1").style.display="none";
-          document.getElementById("table2").style.display="none";
-          document.getElementById("table3").style.display="none";
-          document.getElementById("table4").style.display="none";
-          document.getElementById("table"+nr).style.display="block";
-        }
+
     </script> 
-</head> 
+</head>  
 <body onload="myFunction()"> 
     
 <div class="container">
@@ -76,7 +79,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       <div class="col-4"></div>
       <div class="col-4"></div>
       <div class="col-4">
-          <a th:href="@{/appointmentsetup}" class="btn btn-primary">Set up an appointment</a><br />
+          <a th:href="@{/appointmentsetup}" class="btn btn-primary" style = "color: white; background-color: black;">Set up an appointment</a><br />
       </div>
     </div> <!--row div-->
     <br>
@@ -100,19 +103,36 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
               <th scope="row">Checking</th>
               <td id="availableBal"></td>  
               <td id="currentBal"></td>
-              <td><a href="#" onclick='show(1);'>View Transactions</a></td>
+              <td><input type="button" id="toggleVisibilityButton" value="View Transactions" style = "color: white; background-color: black;"/></td>
             </tr>
-            <tr><div id="table1"> Content of 1 </div></tr>
             <br> 
           </tbody>
-        </table>
+        </table> 
+        <br>
+          <table id="displaytable" style="display:none" width="100%" cellpadding="1" cellspacing="0" border="3">
+            <tr align="center">
+              <td class="lbl">column1</td>
+              <td class="lbl">column2</td>
+              <td class="lbl">column3</td> 
+            </tr>
+            <tr>
+              <td align="center">1</td>
+              <td align="center">2</td>
+              <td align="center">33</td>
+            </tr>
+            <tr>
+              <td align="center">4</td>
+              <td align="center">5</td>
+              <td align="center">6</td>
+            </tr>
+          </table>
       </div>
       <div class="col-4">
-          <a th:href="@{/creditcardapply}" class="btn btn-primary">Apply for a credit card</a><br/><br/>
-          <a th:href="@{/maketransfer}" class="btn btn-primary">Make A Transfer</a><br /><br/>
-          <a th:href="@{/makedeposit}" class="btn btn-primary">Make A Deposit</a><br />
+          <a th:href="@{/creditcardapply}" class="btn btn-primary" style = "color: white; background-color: black;">Apply for a credit card</a><br/><br/>
+          <a th:href="@{/maketransfer}" class="btn btn-primary" style = "color: white; background-color: black;">Make A Transfer</a><br /><br/>
+          <a th:href="@{/makedeposit}" class="btn btn-primary" style = "color: white; background-color: black;">Make A Deposit</a><br />
       </div>
-    </div> <!--row div-->
+    </div> <!--row div--> 
     </br> 
 
     <div class="row">

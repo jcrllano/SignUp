@@ -70,6 +70,11 @@ public class AppController {
         return "about";
     }
 
+    @GetMapping("/makedeposit")
+    public String makeDeposit() {
+        return "makedeposit";
+    }
+
     // handler method to handle user registration request
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
