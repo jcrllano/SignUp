@@ -24,7 +24,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             document.getElementById("availableBal").innerHTML = "$ " + availableBal;
             document.getElementById("currentBal").innerHTML = "$ " + currentBal;
         }
-
+        function show(nr) {
+          document.getElementById("table1").style.display="none";
+          document.getElementById("table2").style.display="none";
+          document.getElementById("table3").style.display="none";
+          document.getElementById("table4").style.display="none";
+          document.getElementById("table"+nr).style.display="block";
+        }
     </script> 
 </head> 
 <body onload="myFunction()"> 
@@ -86,6 +92,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
               <th scope="col">Accounts</th>
               <th scope="col">Current Balance</th>
               <th scope="col">Available Balance</th>
+              <th scope="col">Transactions</th>
             </tr>
           </thead>
           <tbody>
@@ -93,13 +100,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
               <th scope="row">Checking</th>
               <td id="availableBal"></td>  
               <td id="currentBal"></td>
+              <td><a href="#" onclick='show(1);'>View Transactions</a></td>
             </tr>
+            <tr><div id="table1"> Content of 1 </div></tr>
             <br> 
-            <tr>
-              <th scope="row">Savings</th>
-              <td>$ 2,000</td> 
-              <td>$ 2,800</td> 
-            </tr>
           </tbody>
         </table>
       </div>

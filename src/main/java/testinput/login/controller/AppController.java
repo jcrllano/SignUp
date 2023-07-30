@@ -84,6 +84,7 @@ public class AppController {
                                BindingResult result,
                                Model model){
         User existing = userService.findByEmail(user.getEmail());
+        Checking checking = new Checking();
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -91,6 +92,9 @@ public class AppController {
             model.addAttribute("user", user);
             return "register";
         }
+        checking.setBalance("0");
+        checking.setAvailableBalance("0");
+        checkingRepository.save(checking);
         userService.saveUser(user);
         return "redirect:/register?success";
     } 
