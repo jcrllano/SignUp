@@ -70,10 +70,7 @@ public class AppController {
         return "about";
     }
 
-    @GetMapping("/makedeposit")
-    public String makeDeposit() {
-        return "makedeposit";
-    }
+    
 
     // handler method to handle user registration request
     @GetMapping("/register")
@@ -121,6 +118,24 @@ public class AppController {
         model.addAttribute("loggedUser", loggedUser);
         return "customers"; 
     } 
+
+    @GetMapping("/maketransfer")
+    public String makeTransfer(Model model) { 
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        var customerID = checkingRepository.findById(loggedUser.getId());
+        var customerID2 = userRepository.findById(loggedUser.getId());
+        var availableBalance = "";
+        var currentBalance = "";
+        if (customerID.get().getId() == customerID2.get().getId()) {
+            Checking check = new Checking();
+            check.setAvailableBalance(customerID.get().getAvailableBalance());
+            checkingRepository.save(check);
+        }
+        model.addAttribute("availableBalance", availableBalance);
+        model.addAttribute("currentBalance", currentBalance);  
+        return "maketransfer";
+    }
 
     @GetMapping("/appointmentsetup")
     public String appointmentSetUp(Model model) {

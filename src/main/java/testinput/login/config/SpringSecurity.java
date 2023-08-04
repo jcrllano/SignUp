@@ -39,7 +39,7 @@ public class SpringSecurity {
                                 .requestMatchers("/appointmentsetup").permitAll()
                                 .requestMatchers("/save").permitAll()
                                 .requestMatchers("/creditcardapply").permitAll()
-                                .requestMatchers("/makedeposit").permitAll()
+                                .requestMatchers("/maketransfer").permitAll()
                                 .requestMatchers("/customers").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
