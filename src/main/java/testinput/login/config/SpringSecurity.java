@@ -38,6 +38,7 @@ public class SpringSecurity {
                                 .requestMatchers("/appointmentSucess").permitAll()
                                 .requestMatchers("/appointmentsetup").permitAll()
                                 .requestMatchers("/save").permitAll()
+                                .requestMatchers("/maketransfer/save").permitAll()
                                 .requestMatchers("/creditcardapply").permitAll()
                                 .requestMatchers("/maketransfer").permitAll()
                                 .requestMatchers("/customers").hasRole("ADMIN")

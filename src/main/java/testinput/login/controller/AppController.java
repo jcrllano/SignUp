@@ -123,18 +123,20 @@ public class AppController {
     public String makeTransfer(Model model) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        var customerID = checkingRepository.findById(loggedUser.getId());
-        var customerID2 = userRepository.findById(loggedUser.getId());
-        var availableBalance = "";
-        var currentBalance = "";
-        if (customerID.get().getId() == customerID2.get().getId()) {
-            Checking check = new Checking();
-            check.setAvailableBalance(customerID.get().getAvailableBalance());
-            checkingRepository.save(check);
-        }
-        model.addAttribute("availableBalance", availableBalance);
-        model.addAttribute("currentBalance", currentBalance);  
+        Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
+        model.addAttribute("checkingList", checkingList);
         return "maketransfer";
+    }
+
+    @PostMapping("/maketransfer/save")
+    public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        String setBal = check.getAvailableBalance();
+        check = checkingRepository.getReferenceById(loggedUser.getId());
+        check.setAvailableBalance(setBal);
+        checkingRepository.save(check);
+        return "redirect:/maketransfer";  
     }
 
     @GetMapping("/appointmentsetup")
