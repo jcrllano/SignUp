@@ -33,8 +33,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
             }
             });
         }
-
+ 
     </script> 
+    <style>
+      td{
+          padding-right: 42px;
+          padding-left: 42px;
+        }
+    </style>
 </head>  
 <body onload="myFunction()"> 
     
@@ -75,7 +81,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     <br />
     <h3>Good Morning! </h3>&nbsp;
     <h4 id ="name"></h4> 
-    <div class="row">
+    <div class="row"> 
       <div class="col-4"></div>
       <div class="col-4"></div>
       <div class="col-4">
@@ -101,29 +107,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
           <tbody>
             <tr>
               <th scope="row">Checking</th>
-              <td id="availableBal"></td>  
               <td id="currentBal"></td>
+              <td id="availableBal"></td>  
               <td><input type="button" id="toggleVisibilityButton" value="View Transactions" style = "color: white; background-color: black;"/></td>
             </tr>
             <br> 
           </tbody>
         </table> 
         <br>
-          <table id="displaytable" style="display:none" width="100%" cellpadding="1" cellspacing="0" border="3">
+          <table id="displaytable" style="display:none" width="100%" cellpadding="2" cellspacing="25" border="3" padding-left="4em">
             <tr align="center">
-              <td class="lbl">column1</td>
-              <td class="lbl">column2</td>
-              <td class="lbl">column3</td> 
+              <td class="lbl">Date</td>
+              <td class="lbl">Description</td>
+              <td class="lbl">Amount</td> 
+              <td class="lbl">Balance</td> 
             </tr>
             <tr>
-              <td align="center">1</td>
-              <td align="center">2</td>
+              <td align="center">08/06/2023</td>
+              <td align="center">Transfer deposit to cheking</td>
               <td align="center">33</td>
-            </tr>
-            <tr>
-              <td align="center">4</td>
-              <td align="center">5</td>
-              <td align="center">6</td>
+              <td align="center">1,315,000,235.12</td>
             </tr>
           </table>
       </div>
