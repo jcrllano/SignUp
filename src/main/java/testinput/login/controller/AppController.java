@@ -23,6 +23,7 @@ import testinput.login.dto.UserDto;
 import testinput.login.entity.Checking;
 import testinput.login.entity.ConfirmationTime;
 import testinput.login.entity.Time;
+import testinput.login.entity.Transactions;
 import testinput.login.entity.User;
 import testinput.login.repository.CheckingRepository;
 import testinput.login.repository.ConfirmationTimeRepository;
@@ -131,6 +132,7 @@ public class AppController {
 
     @PostMapping("/maketransfer/save")
     public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
+        var transactions = new Transactions();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
         String setBal2 = "";
