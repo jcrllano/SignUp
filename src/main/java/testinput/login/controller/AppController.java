@@ -135,6 +135,7 @@ public class AppController {
         var transactions = new Transactions();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        transactions.setId(1);
         String setBal2 = "";
         if (loggedUser.getId() != 0) {
             var check2 = checkingRepository.getReferenceById(loggedUser.getId());
