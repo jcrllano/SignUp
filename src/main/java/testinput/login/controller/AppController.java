@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import lombok.var;
 import testinput.login.dto.UserDto;
 import testinput.login.entity.Checking;
@@ -132,11 +133,20 @@ public class AppController {
     public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        String setBal2 = "";
+        if (loggedUser.getId() != 0) {
+            var check2 = checkingRepository.getReferenceById(loggedUser.getId());
+            setBal2 = check2.getAvailableBalance();
+        }
         String setBal = check.getAvailableBalance();
         check = checkingRepository.getReferenceById(loggedUser.getId());
-        check.setAvailableBalance(setBal);
+        double value = Double.parseDouble( setBal.replace(",",".") );
+        double value2 = Double.parseDouble( setBal2.replace(",",".") );
+        double result = value + value2;
+        String total = String.valueOf(result);
+        check.setAvailableBalance(total);
         checkingRepository.save(check);
-        return "redirect:/maketransfer";  
+        return "redirect:/customers";  
     }
 
     @GetMapping("/appointmentsetup")
