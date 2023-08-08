@@ -14,7 +14,6 @@ import lombok.Setter;
 @Table(name="transactions")
 public class Transactions {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; 
 
     private String Date;
@@ -22,4 +21,4 @@ public class Transactions {
     private String Amount;
     private String Balance;
 }
- 
+  

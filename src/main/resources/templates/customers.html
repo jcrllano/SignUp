@@ -122,11 +122,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
               <td class="lbl">Amount</td> 
               <td class="lbl">Balance</td> 
             </tr>
-            <tr>
-              <td align="center">08/06/2023</td>
-              <td align="center">Transfer deposit to cheking</td>
-              <td align="center">33</td>
-              <td align="center">1,315,000,235.12</td>
+            <tr th:each="tran : ${transactions}">
+              <td align="center" th:text="${tran.Date}"></td>
+              <td align="center" th:text="${tran.Description}"></td>
+              <td align="center" th:text="${tran.Amount}"></td>
+              <td align="center" th:text="${tran.Balance}"></td>
             </tr>
           </table>
       </div>

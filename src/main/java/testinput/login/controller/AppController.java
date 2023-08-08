@@ -28,6 +28,7 @@ import testinput.login.entity.User;
 import testinput.login.repository.CheckingRepository;
 import testinput.login.repository.ConfirmationTimeRepository;
 import testinput.login.repository.TimeRepository;
+import testinput.login.repository.TransactionsRepository;
 import testinput.login.repository.UserRepository;
 import testinput.login.service.ConfirmationService;
 import testinput.login.service.TimeService;
@@ -52,6 +53,9 @@ public class AppController {
     
     @Autowired
         private CheckingRepository checkingRepository;
+    
+    @Autowired
+    TransactionsRepository transactionsRepository;
 
     public AppController(UserService userService) {
         this.userService = userService;
@@ -118,6 +122,7 @@ public class AppController {
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
+        model.addAttribute("transactions", transactionsRepository.findAll());
         return "customers"; 
     } 
 
@@ -135,7 +140,11 @@ public class AppController {
         var transactions = new Transactions();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        transactions.setId(1);
+        transactions.setId(3);
+        transactions.setDescription("this is a test transaction");
+        transactions.setAmount("16");
+        transactions.setBalance("80");
+        transactions.setDate("03/20/2023");
         String setBal2 = "";
         if (loggedUser.getId() != 0) {
             var check2 = checkingRepository.getReferenceById(loggedUser.getId());
@@ -148,6 +157,7 @@ public class AppController {
         double result = value + value2;
         String total = String.valueOf(result);
         check.setAvailableBalance(total);
+        transactionsRepository.save(transactions);
         checkingRepository.save(check);
         return "redirect:/customers";  
     }
