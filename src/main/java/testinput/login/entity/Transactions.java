@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name="transactions")
 public class Transactions {
     @Id
-    private Integer id; 
+    private String id; 
 
     private String Date;
     private String Description;

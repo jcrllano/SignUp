@@ -1,5 +1,9 @@
 package testinput.login.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.annotations.Check;
@@ -137,26 +141,40 @@ public class AppController {
 
     @PostMapping("/maketransfer/save")
     public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        String todaysdate = dateFormat.format(date);
         var transactions = new Transactions();
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        transactions.setId(3);
-        transactions.setDescription("this is a test transaction");
-        transactions.setAmount("16");
-        transactions.setBalance("80");
-        transactions.setDate("03/20/2023");
         String setBal2 = "";
+        Integer checkID = 0;
         if (loggedUser.getId() != 0) {
             var check2 = checkingRepository.getReferenceById(loggedUser.getId());
+            checkID = loggedUser.getId();
             setBal2 = check2.getAvailableBalance();
         }
         String setBal = check.getAvailableBalance();
+        Long tranID = transactionsRepository.count();
+        int tranIDInteger = Math.toIntExact(tranID);
         check = checkingRepository.getReferenceById(loggedUser.getId());
+        String tranIDIndex = transactionsRepository.findAll().get(tranIDInteger - 1).getId();
+        String [] testString = tranIDIndex.split("-");
+        String part2 = testString[1];
+        int tranIDIndexInt = Integer.parseInt(part2);
         double value = Double.parseDouble( setBal.replace(",",".") );
         double value2 = Double.parseDouble( setBal2.replace(",",".") );
         double result = value + value2;
         String total = String.valueOf(result);
-        check.setAvailableBalance(total);
+        check.setAvailableBalance(total); 
+        String customerCheckID = String.valueOf(checkID);
+        String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
+        transactions.setId(customerCheckID + "-" + customerTransactionsID);
+        transactions.setDescription("this is a test transaction");
+        transactions.setAmount(setBal);  
+        transactions.setBalance(setBal2); 
+        transactions.setDate(todaysdate);
         transactionsRepository.save(transactions);
         checkingRepository.save(check);
         return "redirect:/customers";  
