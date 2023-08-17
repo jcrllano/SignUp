@@ -141,13 +141,21 @@ public class AppController {
 
     @PostMapping("/maketransfer/save")
     public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
+        //this function gets the date for the transactions
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
         String todaysdate = dateFormat.format(date);
+        
+        //gets the transactions class
         var transactions = new Transactions();
+        
+        //gets the logged user authentications
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        
+        //gets the info frothe logged user
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
+        
         String setBal2 = "";
         Integer checkID = 0;
         if (loggedUser.getId() != 0) {
