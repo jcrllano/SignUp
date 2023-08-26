@@ -168,8 +168,9 @@ public class AppController {
             checkingID = loggedUser.getId();
             setTransactionBal = checkingRepositoryID.getAvailableBalance();
         }
-        
-        String setBal = check.getAvailableBalance();
+
+        //this variable will set the transaction amount in the transactions table
+        String setTransactionAmount = check.getAvailableBalance();
         Long tranID = transactionsRepository.count();
         int tranIDInteger = Math.toIntExact(tranID);
         check = checkingRepository.getReferenceById(loggedUser.getId());
@@ -177,7 +178,7 @@ public class AppController {
         String [] testString = tranIDIndex.split("-");
         String part2 = testString[1];
         int tranIDIndexInt = Integer.parseInt(part2);
-        double value = Double.parseDouble( setBal.replace(",",".") );
+        double value = Double.parseDouble( setTransactionAmount.replace(",",".") );
         double value2 = Double.parseDouble( setTransactionBal.replace(",",".") );
         double result = value + value2;
         String total = String.valueOf(result);
@@ -186,7 +187,7 @@ public class AppController {
         String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
         transactions.setDescription("this is a test transaction");
-        transactions.setAmount(setBal);  
+        transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
         transactions.setDate(todaysdate);
         transactionsRepository.save(transactions);
