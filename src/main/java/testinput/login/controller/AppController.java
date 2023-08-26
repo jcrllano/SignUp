@@ -156,13 +156,19 @@ public class AppController {
         //gets the info frothe logged user
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
         
-        String setBal2 = "";
-        Integer checkID = 0;
+        //this variable is set the transcation balance
+        String setTransactionBal = "";
+
+        //this variable will get the ID of the checking table
+        Integer checkingID = 0;
+
+        //this funcation will get the available balance from the checking table using the logged user
         if (loggedUser.getId() != 0) {
-            var check2 = checkingRepository.getReferenceById(loggedUser.getId());
-            checkID = loggedUser.getId();
-            setBal2 = check2.getAvailableBalance();
+            var checkingRepositoryID = checkingRepository.getReferenceById(loggedUser.getId());
+            checkingID = loggedUser.getId();
+            setTransactionBal = checkingRepositoryID.getAvailableBalance();
         }
+        
         String setBal = check.getAvailableBalance();
         Long tranID = transactionsRepository.count();
         int tranIDInteger = Math.toIntExact(tranID);
@@ -172,16 +178,16 @@ public class AppController {
         String part2 = testString[1];
         int tranIDIndexInt = Integer.parseInt(part2);
         double value = Double.parseDouble( setBal.replace(",",".") );
-        double value2 = Double.parseDouble( setBal2.replace(",",".") );
+        double value2 = Double.parseDouble( setTransactionBal.replace(",",".") );
         double result = value + value2;
         String total = String.valueOf(result);
         check.setAvailableBalance(total); 
-        String customerCheckID = String.valueOf(checkID);
+        String customerCheckID = String.valueOf(checkingID);
         String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
         transactions.setDescription("this is a test transaction");
         transactions.setAmount(setBal);  
-        transactions.setBalance(setBal2); 
+        transactions.setBalance(setTransactionBal); 
         transactions.setDate(todaysdate);
         transactionsRepository.save(transactions);
         checkingRepository.save(check);
