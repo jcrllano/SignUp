@@ -171,22 +171,36 @@ public class AppController {
 
         //this variable will set the transaction amount in the transactions table
         String setTransactionAmount = check.getAvailableBalance();
+
+        //this function counts the number of rows in the transaction table
         Long tranID = transactionsRepository.count();
+        
+        //this function will convert Long to integer
         int tranIDInteger = Math.toIntExact(tranID);
         check = checkingRepository.getReferenceById(loggedUser.getId());
+
+        //this function will get the transaction ID of the latest table row of the transaction table
         String tranIDIndex = transactionsRepository.findAll().get(tranIDInteger - 1).getId();
-        String [] testString = tranIDIndex.split("-");
-        String part2 = testString[1];
-        int tranIDIndexInt = Integer.parseInt(part2);
-        double value = Double.parseDouble( setTransactionAmount.replace(",",".") );
-        double value2 = Double.parseDouble( setTransactionBal.replace(",",".") );
-        double result = value + value2;
-        String total = String.valueOf(result);
-        check.setAvailableBalance(total); 
+        
+        //this function will remove the - and split into the user ID and the transaction ID
+        String [] tranIDsplitter = tranIDIndex.split("-");
+        
+        //this function gets the transaction ID as string
+        String tranIDString = tranIDsplitter[1];
+
+        //this function converst string ID into an integer
+        int tranIDIndexInt = Integer.parseInt(tranIDString);
+
+        //this function convert the trnascation amount fro string to double and removes commas
+        double tranAmountvalue = Double.parseDouble( setTransactionAmount.replace(",",".") );
+        double tranAvailableBal = Double.parseDouble( setTransactionBal.replace(",",".") );
+        double totalAvailableBal = tranAmountvalue + tranAvailableBal; 
+        String grandtotalAvailableBal = String.valueOf(totalAvailableBal);
+        check.setAvailableBalance(grandtotalAvailableBal); 
         String customerCheckID = String.valueOf(checkingID);
         String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
-        transactions.setDescription("this is a test transaction");
+        transactions.setDescription("this is a test transaction"); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
         transactions.setDate(todaysdate);
