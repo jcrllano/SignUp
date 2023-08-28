@@ -194,11 +194,17 @@ public class AppController {
         //this function convert the trnascation amount fro string to double and removes commas
         double tranAmountvalue = Double.parseDouble( setTransactionAmount.replace(",",".") );
         double tranAvailableBal = Double.parseDouble( setTransactionBal.replace(",",".") );
+
+        //this will add the transaction amount value to the available balance value into a double
         double totalAvailableBal = tranAmountvalue + tranAvailableBal; 
+
+        //this function converst from double to string
         String grandtotalAvailableBal = String.valueOf(totalAvailableBal);
         check.setAvailableBalance(grandtotalAvailableBal); 
         String customerCheckID = String.valueOf(checkingID);
         String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
+
+        //this fucntions will set the values into the database
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
         transactions.setDescription("this is a test transaction"); 
         transactions.setAmount(setTransactionAmount);  
