@@ -7,6 +7,17 @@
     <title>Registration and Login System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+      function myNewFunction(sel) {
+          var selectValue = sel.options[sel.selectedIndex].text
+          alert(selectValue + " this is the value");
+      }
+
+      function availableAccountFunc(sel) {
+          var selectValue = sel.options[sel.selectedIndex].text
+          alert(selectValue + " this is the other value");
+      }
+    </script>
 </head>
 <body>
     
@@ -48,16 +59,17 @@
   <div class="col"></div>
   <div class="col">
     <h6>Select A Transfer Type</h6>
-    <select class="form-select" aria-label="Default select example">
-      <option value="checking">Withdrawal</option>
-      <option value="savings">Deposit</option>
+    <select class="form-select" aria-label="Default select example" id="ddlViewBy" onChange="myNewFunction(this);">
+      <option selected>Select a transfer type</option>
+      <option value="Withdrawal">Withdrawal</option>
+      <option value="Deposit">Deposit</option> 
     </select>
     </br>     
     <h6>Available Accounts</h6>
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" aria-label="Default select example" onChange="availableAccountFunc(this);">
       <option selected>Select an account</option>
-      <option value="checking">Checking</option> 
-      <option value="savings">Savings</option>
+      <option value="Checking">Checking</option> 
+      <option value="Checking">Savings</option>
     </select> 
     </br>
     <label for="exampleInputPassword1" class="form-label">Amout</label>
