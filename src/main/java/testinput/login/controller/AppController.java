@@ -135,8 +135,9 @@ public class AppController {
     public String makeTransfer(Model model) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        CheckingTransactionForm checkingList = new CheckingTransactionForm();
-        checkingList.getChecking().getId();
+        CheckingTransactionForm checkingTransactionForm = new CheckingTransactionForm();
+        Checking test = checkingTransactionForm.getTransactions();
+        System.out.println("this is the checking id " + test);
         //Transactions transactions = transactionsRepository.getReferenceById("1-2");
         //Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
         //System.out.println("this is the trans desc " + transactions.getDescription());
