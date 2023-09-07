@@ -54,22 +54,22 @@
   </nav>
 <br />
 <br />
-<form action="#" th:action="@{/maketransfer/save}" th:object="${checkingList}" method="POST">
+<form action="#" th:action="@{/maketransfer/save}" th:object="${checkingList}" th:object="${transactions}" method="POST">
 <div class="row">
   <div class="col"></div>
   <div class="col">
     <h6>Select A Transfer Type</h6>
     <select class="form-select" aria-label="Default select example" id="ddlViewBy" onChange="myNewFunction(this);">
       <option selected>Select a transfer type</option>
-      <option value="Withdrawal">Withdrawal</option>
+      <option value="Withdrawal" th.field="*{transactions.Description}">Withdrawal</option>
       <option value="Deposit">Deposit</option> 
     </select>
-    </br>     
+    </br>      
     <h6>Available Accounts</h6>
-    <select class="form-select" aria-label="Default select example" onChange="availableAccountFunc(this);">
+    <select class="form-select" aria-label="Default select example" onChange="availableAccountFunc(this);" th:field="*{Description}">
       <option selected>Select an account</option>
-      <option value="Checking">Checking</option> 
-      <option value="Checking">Savings</option>
+      <option th:value="Checking">Checking</option> 
+      <option th:value="Checking">Savings</option>
     </select> 
     </br>
     <label for="exampleInputPassword1" class="form-label">Amout</label>

@@ -25,6 +25,7 @@ import jakarta.validation.constraints.Null;
 import lombok.var;
 import testinput.login.dto.UserDto;
 import testinput.login.entity.Checking;
+import testinput.login.entity.CheckingTransactionForm;
 import testinput.login.entity.ConfirmationTime;
 import testinput.login.entity.Time;
 import testinput.login.entity.Transactions;
@@ -134,14 +135,20 @@ public class AppController {
     public String makeTransfer(Model model) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        Transactions transactions = transactionsRepository.getReferenceById(loggedUser.getId());
-        Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
-        model.addAttribute("checkingList", checkingList);
+        CheckingTransactionForm checkingList = new CheckingTransactionForm();
+        checkingList.getChecking().getId();
+        //Transactions transactions = transactionsRepository.getReferenceById("1-2");
+        //Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
+        //System.out.println("this is the trans desc " + transactions.getDescription());
+        //model.addAttribute("checkingList", checkingList);
+        //model.addAttribute("transactions", transactions);
         return "maketransfer";
     }
 
     @PostMapping("/maketransfer/save")
-    public String makeTransferSave(@ModelAttribute("checkingList") Checking check) { 
+    public String makeTransferSave(@ModelAttribute("checkingList") Checking check, @ModelAttribute("transactions") Transactions transaction) { 
+        System.out.println("this is the binding result " + transaction.getDescription());
+        
         //this function gets the date for the transactions
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
