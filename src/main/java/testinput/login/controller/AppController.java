@@ -212,7 +212,7 @@ public class AppController {
 
         //this fucntions will set the values into the database
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
-        transactions.setDescription("this is a test transaction"); 
+        transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
         transactions.setDate(todaysdate);
