@@ -54,30 +54,32 @@
   </nav>
 <br />
 <br />
-<form action="#" th:action="@{/maketransfer/save}" th:object="${checkingList}" th:object="${transactions}" method="POST">
+<form action="#" th:action="@{/maketransfer/save}" th:object="${checkingList}" method="POST">
 <div class="row">
   <div class="col"></div>
   <div class="col">
     <h6>Select A Transfer Type</h6>
-    <select class="form-select" aria-label="Default select example" id="ddlViewBy" onChange="myNewFunction(this);">
-      <option selected>Select a transfer type</option>
-      <option value="Withdrawal" th.field="*{transactions.Description}">Withdrawal</option>
-      <option value="Deposit">Deposit</option> 
-    </select>
-    </br>      
-    <h6>Available Accounts</h6>
-    <select class="form-select" aria-label="Default select example" onChange="availableAccountFunc(this);" th:field="*{Description}">
-      <option selected>Select an account</option>
-      <option th:value="Checking">Checking</option> 
-      <option th:value="Checking">Savings</option>
-    </select> 
-    </br>
+      <div th:object="${transactions}" >
+        <select class="form-select" aria-label="Default select example" id="ddlViewBy" onChange="myNewFunction(this);">
+          <option selected>Select a transfer type</option>
+          <option value="Withdrawal">Withdrawal</option>
+          <option value="Deposit">Deposit</option> 
+        </select> 
+        <h6>Available Accounts</h6>
+        <select class="form-select" aria-label="Default select example" onChange="availableAccountFunc(this);">
+          <option selected>Select an account</option>
+          <option>Checking</option> 
+        </select>  
+        </br>  
+        <input type="text" class="form-control" id="exampleInputPassword1" th:field="*{Description}">
+      </div>
+    </br>       
     <label for="exampleInputPassword1" class="form-label">Amout</label>
     <input type="text" class="form-control" id="exampleInputPassword1" th:field="*{availableBalance}">
     </br>  
     <input class="btn btn-outline-primary" type="submit" value="Submit">
   </div>
-  <div class="col"></div>
+  <div class="col"></div> 
 </div>
 </form>
 </div>

@@ -135,15 +135,12 @@ public class AppController {
     public String makeTransfer(Model model) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        CheckingTransactionForm checkingTransactionForm = new CheckingTransactionForm();
-        Checking test = checkingTransactionForm.getTransactions();
-        System.out.println("this is the checking id " + test);
-        //Transactions transactions = transactionsRepository.getReferenceById("1-2");
-        //Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
-        //System.out.println("this is the trans desc " + transactions.getDescription());
-        //model.addAttribute("checkingList", checkingList);
-        //model.addAttribute("transactions", transactions);
-        return "maketransfer";
+        Transactions transactions = transactionsRepository.getReferenceById("1-2");
+        Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
+        model.addAttribute("checkingList", checkingList);
+        model.addAttribute("transactions", transactions);
+        System.out.println("this is the trans desc " + transactions.getDescription());
+        return "maketransfer"; 
     }
 
     @PostMapping("/maketransfer/save")
