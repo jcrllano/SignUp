@@ -135,11 +135,11 @@ public class AppController {
     public String makeTransfer(Model model) { 
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         var loggedUser = userRepository.findByEmail(loggedInUser.getName());
-        Transactions transactions = transactionsRepository.getReferenceById("1-2");
+        //Transactions transactions = transactionsRepository.getReferenceById("1-2");
+        Transactions transactions = new Transactions();
         Checking checkingList = checkingRepository.getReferenceById(loggedUser.getId());
         model.addAttribute("checkingList", checkingList);
         model.addAttribute("transactions", transactions);
-        System.out.println("this is the trans desc " + transactions.getDescription());
         return "maketransfer"; 
     }
 
@@ -180,6 +180,7 @@ public class AppController {
 
         //this function counts the number of rows in the transaction table
         Long tranID = transactionsRepository.count();
+        System.out.println("this is the tran id " + tranID);
         
         //this function will convert Long to integer
         int tranIDInteger = Math.toIntExact(tranID);
@@ -208,9 +209,21 @@ public class AppController {
         String grandtotalAvailableBal = String.valueOf(totalAvailableBal);
         check.setAvailableBalance(grandtotalAvailableBal); 
         String customerCheckID = String.valueOf(checkingID);
-        String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
+        System.out.println("this is the id string " + tranIDIndexInt);
+        
+        //this fucntion will set the transaction ids
+        String customerTransactionsID = "";
+        if (tranIDIndexInt == 9) {
+            customerTransactionsID = String.valueOf((10));
+        }
+        else {
+            customerTransactionsID = String.valueOf((tranIDIndexInt + 1));
+        }
+        //String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
 
-        //this fucntions will set the values into the database
+        System.out.println("this is the ID from tran " + customerTransactionsID);
+
+        //this fucntions will set the values into the database 
         transactions.setId(customerCheckID + "-" + customerTransactionsID);
         transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  

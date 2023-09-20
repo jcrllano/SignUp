@@ -8,15 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script>
-      function myNewFunction(sel) {
-          var selectValue = sel.options[sel.selectedIndex].text
-          alert(selectValue + " this is the value");
-      }
+        function myNewFunction(sel) {
+            var selectValue = sel.options[sel.selectedIndex].text
+            alert(selectValue + " this is the value");
+            document.getElementById("TranDesc").value = selectValue;
+        }
 
-      function availableAccountFunc(sel) {
-          var selectValue = sel.options[sel.selectedIndex].text
-          alert(selectValue + " this is the other value");
-      }
+        function availableAccountFunc(sel) {
+            var selectValue = sel.options[sel.selectedIndex].text
+            alert(selectValue + " this is the other value");
+        }
     </script>
 </head>
 <body>
@@ -71,7 +72,7 @@
           <option>Checking</option> 
         </select>  
         </br>  
-        <input type="text" class="form-control" id="exampleInputPassword1" th:field="*{Description}">
+        <input type="text" class="form-control" id="TranDesc" th:field="*{Description}">
       </div>
     </br>       
     <label for="exampleInputPassword1" class="form-label">Amout</label>
