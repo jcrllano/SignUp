@@ -209,22 +209,25 @@ public class AppController {
         String grandtotalAvailableBal = String.valueOf(totalAvailableBal);
         check.setAvailableBalance(grandtotalAvailableBal); 
         String customerCheckID = String.valueOf(checkingID);
-        System.out.println("this is the id string " + tranIDIndexInt);
         
         //this fucntion will set the transaction ids
-        String customerTransactionsID = "";
-        if (tranIDIndexInt == 9) {
-            customerTransactionsID = String.valueOf((10));
-        }
-        else {
-            customerTransactionsID = String.valueOf((tranIDIndexInt + 1));
-        }
-        //String customerTransactionsID = String.valueOf(tranIDIndexInt + 1);
+        String customerTransactionsID = String.valueOf((tranIDIndexInt + 1));
 
-        System.out.println("this is the ID from tran " + customerTransactionsID);
+        //this fucntions will set the values into the database
+        System.out.println("this is the tran ID  " + customerTransactionsID + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        if (customerTransactionsID.equals("10") ) {
+                transactions.setId(customerCheckID + "-" + "0" + customerTransactionsID); 
+                System.out.println("first one+++++++++++++++++++++++++");
+        }
+        else if (customerTransactionsID == "099") {
+             transactions.setId(customerCheckID + "-" + customerTransactionsID);
+             System.out.println("second one################################");
+        }
+        else    {
+             transactions.setId(customerCheckID + "-" + "00" + customerTransactionsID);
+             System.out.println("third one**********************************");
+        }
 
-        //this fucntions will set the values into the database 
-        transactions.setId(customerCheckID + "-" + customerTransactionsID);
         transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
