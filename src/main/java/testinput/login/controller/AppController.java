@@ -212,14 +212,15 @@ public class AppController {
         
         //this fucntion will set the transaction ids
         String customerTransactionsID = String.valueOf((tranIDIndexInt + 1));
+        int testInteger = Integer.parseInt(customerTransactionsID);
 
         //this fucntions will set the values into the database
         System.out.println("this is the tran ID  " + customerTransactionsID + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        if (customerTransactionsID.equals("10") ) {
+        if (testInteger >= 10 && testInteger < 99) {
                 transactions.setId(customerCheckID + "-" + "0" + customerTransactionsID); 
                 System.out.println("first one+++++++++++++++++++++++++");
         }
-        else if (customerTransactionsID == "099") {
+        else if (testInteger >= 99 ) {
              transactions.setId(customerCheckID + "-" + customerTransactionsID);
              System.out.println("second one################################");
         }
