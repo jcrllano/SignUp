@@ -124,6 +124,9 @@ public class AppController {
             availableBalance = customerID.get().getAvailableBalance();
             currentBalance = customerID.get().getBalance();
         }
+        for (int x = 0; x <= 10; x++) {
+                System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
+            }
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
