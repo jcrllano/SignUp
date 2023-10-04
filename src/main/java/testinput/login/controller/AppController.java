@@ -124,9 +124,14 @@ public class AppController {
             availableBalance = customerID.get().getAvailableBalance();
             currentBalance = customerID.get().getBalance();
         }
+        String[] arrayID = new String[19];
         for (int x = 0; x < transactionsRepository.findAll().size(); x++) {
-                System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
+                //System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
+                arrayID[x] = transactionsRepository.findAll().get(x).getId();
             }
+        for (int x = 0; x < arrayID.length; x++) {
+            System.out.println("this is the array id " + arrayID[x]);
+        }
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
