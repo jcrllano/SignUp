@@ -124,13 +124,17 @@ public class AppController {
             availableBalance = customerID.get().getAvailableBalance();
             currentBalance = customerID.get().getBalance();
         }
-        String[] arrayID = new String[19];
+        int ArraySize = 20;
+        String[] arrayID = new String[ArraySize];
         for (int x = 0; x < transactionsRepository.findAll().size(); x++) {
                 //System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
                 arrayID[x] = transactionsRepository.findAll().get(x).getId();
             }
         for (int x = 0; x < arrayID.length; x++) {
-            System.out.println("this is the array id " + arrayID[x]);
+            if (arrayID[x].substring(0, 1).equals("1")) {
+                System.out.println("this is the array id " + arrayID[x].substring(0, 1)); 
+                System.out.println("this are the transactions " + transactionsRepository.findAll().get(x).getDescription());
+            }
         }
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
@@ -188,7 +192,6 @@ public class AppController {
 
         //this function counts the number of rows in the transaction table
         Long tranID = transactionsRepository.count();
-        System.out.println("this is the tran id " + tranID);
         
         //this function will convert Long to integer
         int tranIDInteger = Math.toIntExact(tranID);
