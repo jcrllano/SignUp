@@ -20,5 +20,6 @@ public class Transactions {
     private String Description;
     private String Amount;
     private String Balance;
+    private String time;
 }
   

@@ -139,7 +139,7 @@ public class AppController {
                 //model.addAttribute("transactions", transactionsRepository.findAll().get(x).getAmount());
             }
         }*/
-
+        System.out.println("this are all the transactiosn "  + transactionsRepository.findAll().get(10).getTime());
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
@@ -253,14 +253,16 @@ public class AppController {
              System.out.println("third one**********************************");
         }
 
+        System.out.println("this is the timing " + time);
         transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
         transactions.setDate(todaysdate);
+        transactions.setTime(time);
         transactionsRepository.save(transactions);
         checkingRepository.save(check);
         return "redirect:/customers";  
-    }
+    } 
 
     @GetMapping("/appointmentsetup")
     public String appointmentSetUp(Model model) {

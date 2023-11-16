@@ -121,12 +121,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
           <table id="displaytable" style="display:none" width="100%" cellpadding="2" cellspacing="25" border="3" padding-left="4em">
             <tr align="center">
               <td class="lbl">Date</td>
+              <td class="lbl">Time</td>
               <td class="lbl">Description</td>
               <td class="lbl">Amount</td> 
               <td class="lbl">Balance</td> 
             </tr>
             <tr th:each="tran : ${transactions}">
               <td align="center" th:text="${tran.Date}"></td>
+              <td align="center" th:text="${tran.time}"></td>
               <td align="center" th:text="${tran.Description}"></td>
               <td align="center" th:text="${tran.Amount}"></td>
               <td align="center" th:text="${tran.Balance}"></td>
