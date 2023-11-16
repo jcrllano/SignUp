@@ -167,8 +167,14 @@ public class AppController {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
+        
+        //this function will convert the integer into a string
         int hour = cal.getTime().getHours();
         int minutes = cal.getTime().getMinutes();
+        String hourString = Integer.toString(hour);
+        String minutesString = Integer.toString(minutes);
+        String time = hourString + ":" + minutesString;
+
         System.out.println("this is the hour from the first function " + hour + ":" + minutes);
         String todaysdate = dateFormat.format(date);
 
