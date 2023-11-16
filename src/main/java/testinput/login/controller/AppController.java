@@ -2,6 +2,7 @@ package testinput.login.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -124,7 +125,8 @@ public class AppController {
             availableBalance = customerID.get().getAvailableBalance();
             currentBalance = customerID.get().getBalance();
         }
-        int ArraySize = 20;
+        
+        /*int ArraySize = 20;
         String[] arrayID = new String[ArraySize];
         for (int x = 0; x < transactionsRepository.findAll().size(); x++) {
                 //System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
@@ -133,9 +135,11 @@ public class AppController {
         for (int x = 0; x < arrayID.length; x++) {
             if (arrayID[x].substring(0, 1).equals("1")) {
                 System.out.println("this is the array id " + arrayID[x].substring(0, 1)); 
-                System.out.println("this are the transactions " + transactionsRepository.findAll().get(x).getDescription());
+                System.out.println("this are the transactions " + transactionsRepository.findAll().get(x).getAmount());
+                //model.addAttribute("transactions", transactionsRepository.findAll().get(x).getAmount());
             }
-        }
+        }*/
+
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
@@ -163,8 +167,11 @@ public class AppController {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
+        int hour = cal.getTime().getHours();
+        int minutes = cal.getTime().getMinutes();
+        System.out.println("this is the hour from the first function " + hour + ":" + minutes);
         String todaysdate = dateFormat.format(date);
-        
+
         //gets the transactions class
         var transactions = new Transactions();
         
