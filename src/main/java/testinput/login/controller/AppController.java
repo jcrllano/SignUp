@@ -126,10 +126,13 @@ public class AppController {
             currentBalance = customerID.get().getBalance();
         }
         
-        /*int ArraySize = 20;
-        String[] arrayID = new String[ArraySize];
+        //int ArraySize = 2;
+        String[] arrayID = new String[transactionsRepository.findAll().size()];
+        System.out.println("this is the size of the array " + arrayID.length);
         for (int x = 0; x < transactionsRepository.findAll().size(); x++) {
-                //System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
+                System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
+                String TranTestID = transactionsRepository.findAll().get(x).getId();
+                System.out.println("thi sis the transaction content " + transactionsRepository.findById(TranTestID).get().getAmount());
                 arrayID[x] = transactionsRepository.findAll().get(x).getId();
             }
         for (int x = 0; x < arrayID.length; x++) {
@@ -138,8 +141,8 @@ public class AppController {
                 System.out.println("this are the transactions " + transactionsRepository.findAll().get(x).getAmount());
                 //model.addAttribute("transactions", transactionsRepository.findAll().get(x).getAmount());
             }
-        }*/
-        System.out.println("this are all the transactiosn "  + transactionsRepository.findAll().get(10).getTime());
+        }
+        
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
@@ -239,21 +242,16 @@ public class AppController {
         int testInteger = Integer.parseInt(customerTransactionsID);
 
         //this fucntions will set the values into the database
-        System.out.println("this is the tran ID  " + customerTransactionsID + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         if (testInteger >= 10 && testInteger < 99) {
                 transactions.setId(customerCheckID + "-" + "0" + customerTransactionsID); 
-                System.out.println("first one+++++++++++++++++++++++++");
         }
-        else if (testInteger >= 99 ) {
+        if (testInteger >= 99 ) {
              transactions.setId(customerCheckID + "-" + customerTransactionsID);
-             System.out.println("second one################################");
         }
         else    {
              transactions.setId(customerCheckID + "-" + "00" + customerTransactionsID);
-             System.out.println("third one**********************************");
         }
 
-        System.out.println("this is the timing " + time);
         transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
