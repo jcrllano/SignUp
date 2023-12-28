@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
 import lombok.var;
@@ -39,6 +40,8 @@ import testinput.login.repository.UserRepository;
 import testinput.login.service.ConfirmationService;
 import testinput.login.service.TimeService;
 import testinput.login.service.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class AppController {
@@ -87,6 +90,38 @@ public class AppController {
         return "about";
     }
 
+    @PostMapping("/forgotpassword")
+    public String postMethodName(@ModelAttribute("user") User user ) {
+        User existingUser = userRepository.findByEmail("vader@yahoo.com");
+        System.out.println("this is the name of the user " + existingUser.getName());
+        if (existingUser != null) {
+            // Create token
+            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
+
+            // Save it
+            //confirmationTokenRepository.save(confirmationToken);
+
+            // Create the email
+            //SimpleMailMessage mailMessage = new SimpleMailMessage();
+            //mailMessage.setTo(existingUser.getEmailId());
+           //mailMessage.setSubject("Complete Password Reset!");
+            //mailMessage.setFrom("test-email@gmail.com");
+            //mailMessage.setText("To complete the password reset process, please click here: "
+              //+ "http://localhost:8082/confirm-reset?token="+confirmationToken.getConfirmationToken());
+
+            // Send the email
+            //emailSenderService.sendEmail(mailMessage);
+
+            //modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
+            //modelAndView.setViewName("successForgotPassword");
+
+        } else {
+            //modelAndView.addObject("message", "This email address does not exist!");
+            //modelAndView.setViewName("error");
+        }
+        return "redirect:/login";
+    }
+    
     
 
     // handler method to handle user registration request
