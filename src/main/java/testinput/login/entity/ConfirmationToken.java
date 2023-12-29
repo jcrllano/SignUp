@@ -1,0 +1,36 @@
+package testinput.login.entity;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+public class ConfirmationToken {
+    @Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="token_id")
+	private long tokenid;
+
+	@Column(name="confirmation_token")
+	private String confirmationToken;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
+	
+	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "user_id")
+    private User user;
+}

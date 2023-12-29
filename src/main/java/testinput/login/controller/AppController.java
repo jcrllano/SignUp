@@ -29,11 +29,13 @@ import testinput.login.dto.UserDto;
 import testinput.login.entity.Checking;
 import testinput.login.entity.CheckingTransactionForm;
 import testinput.login.entity.ConfirmationTime;
+import testinput.login.entity.ConfirmationToken;
 import testinput.login.entity.Time;
 import testinput.login.entity.Transactions;
 import testinput.login.entity.User;
 import testinput.login.repository.CheckingRepository;
 import testinput.login.repository.ConfirmationTimeRepository;
+import testinput.login.repository.ConfirmationTokenRepository;
 import testinput.login.repository.TimeRepository;
 import testinput.login.repository.TransactionsRepository;
 import testinput.login.repository.UserRepository;
@@ -89,15 +91,20 @@ public class AppController {
     public String about() {
         return "about";
     }
-
+    
+    //https://github.com/ro6ley/java-forgot-pswd/blob/master/src/main/java/com/springsecurity/demo/controller/UserAccountController.java
+    
     @PostMapping("/forgotpassword")
     public String postMethodName(@ModelAttribute("user") User user ) {
         User existingUser = userRepository.findByEmail("vader@yahoo.com");
         System.out.println("this is the name of the user " + existingUser.getName());
         if (existingUser != null) {
             // Create token
-            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
+            ConfirmationToken confirmationToken = new ConfirmationToken();
+            // save it
+			ConfirmationTokenRepository.save(confirmationToken);
 
+            System.out.println("this is the token " + confirmationToken.getConfirmationToken());
             // Save it
             //confirmationTokenRepository.save(confirmationToken);
 
