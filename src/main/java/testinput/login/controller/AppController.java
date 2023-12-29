@@ -104,7 +104,7 @@ public class AppController {
         if (existingUser != null) {
             // Create token
             ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
-
+            //System.out.println("http://localhost:8082/confirm-reset?token=" + confirmationToken.getConfirmationToken());
             // Save it
             confirmationTokenRepository.save(confirmationToken);
 
