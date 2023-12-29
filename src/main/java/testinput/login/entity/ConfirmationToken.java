@@ -1,6 +1,7 @@
 package testinput.login.entity;
 
 import java.util.Date;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,4 +34,10 @@ public class ConfirmationToken {
 	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+	
+	public ConfirmationToken(User user) {
+		this.user = user;
+		createdDate = new Date();
+		confirmationToken = UUID.randomUUID().toString();
+	}
 }

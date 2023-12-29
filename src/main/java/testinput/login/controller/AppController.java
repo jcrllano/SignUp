@@ -68,6 +68,9 @@ public class AppController {
     @Autowired
     TransactionsRepository transactionsRepository;
 
+    @Autowired
+    ConfirmationTokenRepository confirmationTokenRepository;
+
     public AppController(UserService userService) {
         this.userService = userService;
     }
@@ -100,13 +103,10 @@ public class AppController {
         System.out.println("this is the name of the user " + existingUser.getName());
         if (existingUser != null) {
             // Create token
-            ConfirmationToken confirmationToken = new ConfirmationToken();
-            // save it
-			ConfirmationTokenRepository.save(confirmationToken);
+            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
 
-            System.out.println("this is the token " + confirmationToken.getConfirmationToken());
             // Save it
-            //confirmationTokenRepository.save(confirmationToken);
+            confirmationTokenRepository.save(confirmationToken);
 
             // Create the email
             //SimpleMailMessage mailMessage = new SimpleMailMessage();
