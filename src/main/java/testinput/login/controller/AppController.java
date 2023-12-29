@@ -79,7 +79,7 @@ public class AppController {
  
     @GetMapping("/forgotpassword")
     public String forgotPassword(){
-        return "forgotpassword";
+        return "forgotpassword"; 
     }
 
     @GetMapping("/login")
