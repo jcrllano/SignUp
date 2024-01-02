@@ -105,7 +105,7 @@ public class AppController {
     
     @PostMapping("/forgotpassword")
     public String postMethodName(@ModelAttribute("user") User user ) {
-        User existingUser = userRepository.findByEmail("skywalker@yahoo.com");
+        User existingUser = userRepository.findByEmail("dolphinsnotredamfan@yahoo.com");
         if (existingUser != null) {
             // Create token
             ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
@@ -121,7 +121,7 @@ public class AppController {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(existingUser.getEmail());
             mailMessage.setSubject("Complete Password Reset!");
-            mailMessage.setFrom("test-email@gmail.com");
+            mailMessage.setFrom("dolphinsnotredamfan@yahoo.com");
             mailMessage.setText("To complete the password reset process, please click here: "
             + "http://localhost:8082/confirm-reset?token="+confirmationToken.getConfirmationToken());
 
