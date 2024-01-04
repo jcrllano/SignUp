@@ -68,8 +68,8 @@ public class AppController {
     @Autowired
         private CheckingRepository checkingRepository;
 
-    @Autowired
-    private MailSender mailSender;
+   // @Autowired
+   // private MailSender mailSender;
     
     @Autowired
     TransactionsRepository transactionsRepository;
@@ -113,25 +113,23 @@ public class AppController {
             
             // Save it
             var UserToekIDExist = confirmationToken.getUser();
-            System.out.println("this is the user token " + UserToekIDExist.getId());
             confirmationTokenRepository.save(confirmationToken);
-             System.out.println("this is the confirmation toke " + confirmationToken.getConfirmationToken() + " this is the token id " + confirmationToken.getTokenid());
             
             // Create the email
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo(existingUser.getEmail());
-            mailMessage.setSubject("Complete Password Reset!");
-            mailMessage.setFrom("dolphinsnotredamfan@yahoo.com");
-            mailMessage.setText("To complete the password reset process, please click here: "
-            + "http://localhost:8082/confirm-reset?token="+confirmationToken.getConfirmationToken());
+            //SimpleMailMessage mailMessage = new SimpleMailMessage();
+            //mailMessage.setTo(existingUser.getEmail());
+            //mailMessage.setSubject("Complete Password Reset!");
+            //mailMessage.setFrom("dolphinsnotredamfan@yahoo.com");
+            //mailMessage.setText("To complete the password reset process, please click here: "
+            //+ "http://localhost:8082/confirm-reset?token="+confirmationToken.getConfirmationToken());
 
-            mailSender.send(mailMessage);
+            //mailSender.send(mailMessage);
             
 
             //modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
             //modelAndView.setViewName("successForgotPassword");
 
-        } else {
+        //} else {
             //modelAndView.addObject("message", "This email address does not exist!");
             //modelAndView.setViewName("error");
         }

@@ -30,7 +30,6 @@ public class ConfirmationToken {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 	
-	//@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false, name = "userID")
     private User user;
