@@ -87,8 +87,10 @@ public class AppController {
     }
  
     @GetMapping("/forgotpassword")
-    public String forgotPassword(){
-        return "forgotpassword"; 
+    public ModelAndView forgotPassword(ModelAndView modelAndView, User user){
+        modelAndView.addObject("user", user);
+		modelAndView.setViewName("forgotpassword");
+        return modelAndView; 
     }
 
     @GetMapping("/login")
@@ -105,7 +107,8 @@ public class AppController {
     
     @PostMapping("/forgotpassword")
     public String postMethodName(@ModelAttribute("user") User user ) {
-        User existingUser = userRepository.findByEmail("dolphinsnotredamfan@yahoo.com");
+        User existingUser = userRepository.findByEmail(user.getEmail());
+        System.out.println("this is the existing user " + existingUser);
         if (existingUser != null) {
             // Create token
             ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
@@ -180,23 +183,6 @@ public class AppController {
             currentBalance = customerID.get().getBalance();
         }
         
-        //int ArraySize = 2;
-        String[] arrayID = new String[transactionsRepository.findAll().size()];
-        System.out.println("this is the size of the array " + arrayID.length);
-        for (int x = 0; x < transactionsRepository.findAll().size(); x++) {
-                System.out.println("this is the ids " + transactionsRepository.findAll().get(x).getId());
-                String TranTestID = transactionsRepository.findAll().get(x).getId();
-                System.out.println("thi sis the transaction content " + transactionsRepository.findById(TranTestID).get().getAmount());
-                arrayID[x] = transactionsRepository.findAll().get(x).getId();
-            }
-        for (int x = 0; x < arrayID.length; x++) {
-            if (arrayID[x].substring(0, 1).equals("1")) {
-                System.out.println("this is the array id " + arrayID[x].substring(0, 1)); 
-                System.out.println("this are the transactions " + transactionsRepository.findAll().get(x).getAmount());
-                //model.addAttribute("transactions", transactionsRepository.findAll().get(x).getAmount());
-            }
-        }
-        
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
@@ -217,8 +203,9 @@ public class AppController {
     }
 
     @PostMapping("/maketransfer/save")
-    public String makeTransferSave(@ModelAttribute("checkingList") Checking check, @ModelAttribute("transactions") Transactions transaction) { 
-        System.out.println("this is the binding result " + transaction.getDescription());
+    public String makeTransferSave(@ModelAttribute("checkingList") Checking check, 
+                                   @ModelAttribute("transactions") Transactions transaction, 
+                                   @ModelAttribute("user") User user) { 
         
         //this function gets the date for the transactions
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -232,7 +219,6 @@ public class AppController {
         String minutesString = Integer.toString(minutes);
         String time = hourString + ":" + minutesString;
 
-        System.out.println("this is the hour from the first function " + hour + ":" + minutes);
         String todaysdate = dateFormat.format(date);
 
         //gets the transactions class
@@ -260,25 +246,8 @@ public class AppController {
         //this variable will set the transaction amount in the transactions table
         String setTransactionAmount = check.getAvailableBalance();
 
-        //this function counts the number of rows in the transaction table
-        Long tranID = transactionsRepository.count();
-        
-        //this function will convert Long to integer
-        int tranIDInteger = Math.toIntExact(tranID);
         check = checkingRepository.getReferenceById(loggedUser.getId());
-
-        //this function will get the transaction ID of the latest table row of the transaction table
-        String tranIDIndex = transactionsRepository.findAll().get(tranIDInteger - 1).getId();
         
-        //this function will remove the - and split into the user ID and the transaction ID
-        String [] tranIDsplitter = tranIDIndex.split("-");
-        
-        //this function gets the transaction ID as string
-        String tranIDString = tranIDsplitter[1];
-
-        //this function converst string ID into an integer
-        int tranIDIndexInt = Integer.parseInt(tranIDString);
-
         //this function convert the trnascation amount fro string to double and removes commas
         double tranAmountvalue = Double.parseDouble( setTransactionAmount.replace(",",".") );
         double tranAvailableBal = Double.parseDouble( setTransactionBal.replace(",",".") );
@@ -290,22 +259,11 @@ public class AppController {
         String grandtotalAvailableBal = String.valueOf(totalAvailableBal);
         check.setAvailableBalance(grandtotalAvailableBal); 
         String customerCheckID = String.valueOf(checkingID);
+
+        //this sets the currentlogged user ID into the userid column in the Transactions table
+        User existingUser = loggedUser;
         
-        //this fucntion will set the transaction ids
-        String customerTransactionsID = String.valueOf((tranIDIndexInt + 1));
-        int testInteger = Integer.parseInt(customerTransactionsID);
-
-        //this fucntions will set the values into the database
-        if (testInteger >= 10 && testInteger < 99) {
-                transactions.setId(customerCheckID + "-" + "0" + customerTransactionsID); 
-        }
-        if (testInteger >= 99 ) {
-             transactions.setId(customerCheckID + "-" + customerTransactionsID);
-        }
-        else    {
-             transactions.setId(customerCheckID + "-" + "00" + customerTransactionsID);
-        }
-
+        transactions.setUser(existingUser);
         transactions.setDescription(transaction.getDescription()); 
         transactions.setAmount(setTransactionAmount);  
         transactions.setBalance(setTransactionBal); 
