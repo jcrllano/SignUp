@@ -183,6 +183,11 @@ public class AppController {
             currentBalance = customerID.get().getBalance();
         }
         
+        Transactions transactions = new Transactions();
+        
+        //Iterable<Employee> emps = employeeRepository.findAllById(ids);
+    
+        System.out.println("this the transaction User ID " + transactionsRepository.findAllById(Transactions, 1));
         model.addAttribute("availableBalance", availableBalance);
         model.addAttribute("currentBalance", currentBalance); 
         model.addAttribute("loggedUser", loggedUser);
